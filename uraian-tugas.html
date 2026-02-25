@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uraian Tugas - SPMI Universitas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: #203E77;
+      color: white;
+      padding: 0;
+      border-bottom: 5px solid #ffcc00;
+      overflow: visible;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+      color: white;
+    }
+
+    .logo small {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav ul li {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a {
+      color: white;
+      font-weight: 500;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #004080;
+      min-width: 220px;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    nav ul ul li {
+      height: auto;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul li a {
+      padding: 12px 20px;
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    nav ul ul li a:hover {
+      background-color: #00264d;
+      padding-left: 25px;
+    }
+
+    nav ul li:hover>ul {
+      display: flex;
+    }
+
+    .arrow-down {
+      font-size: 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    main {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1.page-title {
+      font-size: 28px;
+      color: #003366;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .job-section {
+      margin-bottom: 40px;
+      background: #fff;
+    }
+
+    .job-header {
+      background-color: #f8f9fa;
+      padding: 15px 20px;
+      border-left: 5px solid #003366;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .job-header h2 {
+      margin: 0;
+      color: #003366;
+      font-size: 20px;
+    }
+
+    .job-content ol {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .job-content li {
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    footer {
+      background-color: #333;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        height: auto;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      nav ul li {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      nav ul ul {
+        position: static;
+        display: none;
+        width: 100%;
+      }
+
+      nav ul li:hover>ul {
+        display: flex;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var dropdowns = document.querySelectorAll('nav > ul > li');
+      dropdowns.forEach(function (li) {
+        var submenu = li.querySelector('ul');
+        if (!submenu) return;
+        li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
+        li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo" style="display: flex; align-items: center;">
+        <img src="President_University_Logo.png" alt="Logo President University"
+          style="height: 60px; margin-right: 15px;">
+        <div>
+          <h1 style="margin: 0; font-size: 24px; color: white;">SPMI Universitas Presiden</h1>
+          <small style="font-size: 14px; opacity: 0.8; color: white;">Direktorat Penjaminan Mutu Internal</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li>
+            <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur Organisasi</a></li>
+              <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
+            </ul>
+          </li>
+          <li><a href="akreditasi.html">Akreditasi</a></li>
+          <li>
+            <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
+              <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+            </ul>
+          </li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="internasionalisasi.html">Internasionalisasi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <h1 class="page-title"><i class="fas fa-tasks"></i> Uraian Tugas DPMI</h1>
+
+      <!-- DIREKTUR -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>DIREKTUR</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Merumuskan kebijakan strategis terkait penjaminan mutu internal yang mencakup standar, prosedur, dan
+              mekanisme evaluasi. Mengimplementasikan kebijakan ini secara efektif di seluruh unit kerja universitas.
+            </li>
+            <li>Menyusun dan memimpin pelaksanaan evaluasi dan audit mutu internal secara berkala, termasuk meninjau
+              program studi, fakultas, dan unit administrasi dalam hal pencapaian standar mutu.</li>
+            <li>Bekerjasama dengan unit terkait untuk menyusun rencana perbaikan berdasarkan hasil evaluasi dan audit.
+              Memastikan bahwa langkah-langkah perbaikan dilaksanakan sesuai dengan rekomendasi yang diberikan.</li>
+            <li>Menyusun laporan berkala terkait hasil penjaminan mutu dan menyampaikan rekomendasi untuk perbaikan atau
+              pengambilan keputusan kepada Rektor dan pimpinan universitas lainnya.</li>
+            <li>Mengkoordinasikan semua unit di universitas agar siap menghadapi proses akreditasi, baik nasional maupun
+              internasional. Mengelola dokumentasi dan proses persiapan akreditasi secara komprehensif.</li>
+            <li>Menginisiasi dan memfasilitasi program pelatihan dan pengembangan kapasitas sumber daya manusia yang
+              terlibat dalam penjaminan mutu, termasuk dosen, tenaga kependidikan, dan staf administrasi.</li>
+            <li>Menjalin hubungan dengan lembaga penjaminan mutu eksternal, seperti BAN-PT dan lembaga akreditasi
+              internasional, untuk memastikan bahwa standar dan praktik di universitas selaras dengan regulasi dan
+              persyaratan eksternal.</li>
+            <li>Mengawasi pelaksanaan sistem penjaminan mutu di setiap program studi dan unit kerja. Melakukan
+              monitoring berkelanjutan terhadap pelaksanaan standar dan prosedur yang telah ditetapkan.</li>
+            <li>Mempromosikan budaya peningkatan mutu yang berkelanjutan di lingkungan universitas melalui penguatan
+              komitmen semua stakeholder terhadap pencapaian kualitas terbaik di semua aspek kegiatan.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- WADIR AKREDITASI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>WAKIL DIREKTUR BIDANG AKREDITASI</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Memimpin persiapan universitas dalam menjalani proses akreditasi nasional untuk program studi, fakultas,
+              dan universitas secara keseluruhan. Hal ini mencakup pengumpulan data, penyusunan dokumen akreditasi, dan
+              pengelolaan laporan evaluasi diri.</li>
+            <li>Bertanggung jawab atas penyusunan dan verifikasi dokumen akreditasi nasional yang sesuai dengan standar
+              dan kriteria yang ditetapkan oleh BAN-PT atau LAM. Memastikan kelengkapan, keakuratan, dan validitas data
+              yang diserahkan kepada lembaga akreditasi.</li>
+            <li>Memonitor seluruh proses akreditasi nasional, termasuk evaluasi lapangan oleh asesor BAN-PT atau LAM.
+              Melakukan kajian terhadap hasil akreditasi untuk memahami area perbaikan dan peluang peningkatan mutu.
+            </li>
+            <li>Membangun dan menjaga hubungan kerja sama yang baik dengan BAN-PT atau LAM dan lembaga terkait lainnya
+              untuk memastikan kelancaran proses akreditasi. Mengkoordinasikan komunikasi antar universitas dan lembaga
+              akreditasi.</li>
+            <li>Menyusun laporan terkait hasil akreditasi dan memberikan rekomendasi kepada pimpinan universitas serta
+              unit kerja terkait untuk meningkatkan kualitas dan standar pendidikan yang sesuai dengan tuntutan
+              akreditasi nasional.</li>
+            <li>Mengkoordinasikan implementasi standar akreditasi nasional di setiap program studi dan fakultas, serta
+              memastikan kepatuhan terhadap peraturan dan pedoman BAN-PT yang berlaku.</li>
+            <li>Merancang dan mengimplementasikan pelatihan, workshop, dan sosialisasi terkait persiapan akreditasi bagi
+              dosen, tenaga kependidikan, dan pimpinan unit untuk meningkatkan pemahaman mengenai proses akreditasi
+              nasional.</li>
+            <li>Bekerja sama dengan Wakil Direktur Bidang Pemeringkatan Internasional dan Audit Mutu Internal (AMI)
+              dalam melakukan monitoring berkala untuk memastikan bahwa program studi dan fakultas tetap memenuhi
+              kriteria akreditasi nasional dalam jangka panjang dan siap menghadapi setiap kegiatan yang berkaitan
+              dengan evaluasi atau audit mutu internal.</li>
+            <li>Melaporkan secara berkala kepada Direktur DPMI mengenai perkembangan, tantangan, dan hasil proses
+              akreditasi di tingkat nasional serta memberikan masukan strategis untuk perbaikan dan peningkatan mutu.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- WADIR PEMERINGKATAN INT & AMI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>WAKIL DIREKTUR BIDANG PEMERINGKATAN INTERNASIONAL DAN AUDIT MUTU INTERNAL (AMI)</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab atas persiapan akreditasi internasional untuk program studi dan universitas secara
+              keseluruhan, termasuk pengelolaan data dan dokumen yang dibutuhkan oleh lembaga akreditasi internasional.
+            </li>
+            <li>Menyusun strategi dan program untuk meningkatkan posisi Universitas Presiden dalam peringkat dunia
+              (seperti QS Ranking), dengan fokus pada indikator utama seperti kualitas pendidikan, penelitian,
+              internasionalisasi, dan reputasi.</li>
+            <li>Mengumpulkan, mengelola, dan menganalisis data yang diperlukan untuk memenuhi kriteria peringkat
+              internasional. Memastikan data tersebut akurat dan sesuai dengan standar yang ditetapkan oleh lembaga
+              pemeringkat.</li>
+            <li>Mengembangkan hubungan dan komunikasi dengan lembaga pemeringkat seperti QS, Times Higher Education
+              (THE), dan lembaga akreditasi internasional untuk memahami kriteria dan standar terbaru yang relevan.</li>
+            <li>Menyusun laporan kinerja terkait peringkat internasional dan memberikan rekomendasi strategis kepada
+              Direktur DPMI dan pimpinan universitas untuk langkah-langkah yang perlu diambil dalam meningkatkan posisi
+              peringkat.</li>
+            <li>Mengkoordinasikan program internasionalisasi yang mencakup kerjasama internasional, peningkatan jumlah
+              mahasiswa dan staf internasional, serta pengembangan program pendidikan berstandar global.</li>
+            <li>Memonitor indikator kinerja utama (KPI) yang memengaruhi peringkat universitas dan akreditasi
+              internasional secara berkala untuk memastikan kesesuaian dengan standar internasional.</li>
+            <li>Mengadakan sosialisasi dan pelatihan terkait akreditasi dan peringkat internasional bagi dosen, staf,
+              dan pimpinan universitas untuk meningkatkan pemahaman tentang pentingnya pemeringkatan global.</li>
+            <li>Bekerja sama dengan Wakil Direktur Bidang Akreditasi dalam melakukan monitoring berkala untuk memastikan
+              bahwa program studi dan fakultas tetap memenuhi kriteria akreditasi nasional dalam jangka panjang dan siap
+              menghadapi setiap kegiatan yang berkaitan dengan evaluasi atau Audit Mutu Internal (AMI).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- WADIR SISTEM INFORMASI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>WAKIL DIREKTUR BIDANG SISTEM INFORMASI, DATA, DAN STATISTIK</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Merumuskan dan mengembangkan kebijakan terkait sistem informasi, data, dan statistik yang mendukung visi
+              dan misi universitas.</li>
+            <li>Mengidentifikasi kebutuhan sistem informasi yang ada dan merencanakan peningkatan atau pengembangan
+              sistem yang lebih efisien.</li>
+            <li>Memimpin audit dan evaluasi berkala terhadap sistem informasi dan data yang ada untuk memastikan akurasi
+              dan keandalan informasi.</li>
+            <li>Memonitor indikator kinerja utama (KPI) yang berkaitan dengan sistem informasi dan statistik universitas
+              untuk memastikan bahwa sistem berjalan sesuai dengan rencana dan anggaran.</li>
+            <li>Menyusun laporan berkala mengenai kinerja sistem informasi dan statistik untuk disampaikan kepada
+              pimpinan universitas.</li>
+            <li>Mengkoordinasikan proses pengumpulan, pengolahan, dan analisis data akademik dan non-akademik untuk
+              mendukung pengambilan keputusan yang berbasis data.</li>
+            <li>Berkoordinasi dengan unit-unit lain di universitas untuk memastikan integrasi dan konsistensi data yang
+              digunakan dalam laporan dan analisis.</li>
+            <li>Mendorong inovasi dalam penggunaan teknologi informasi untuk meningkatkan efisiensi dan efektivitas
+              pengelolaan data dan statistik.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KABAG AKREDITASI PRODI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>KEPALA BAGIAN AKREDITASI PROGRAM STUDI (APS)</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab memimpin dan mengoordinasikan persiapan akreditasi program studi di Universitas
+              Presiden, termasuk pengumpulan dan penyusunan dokumen yang relevan sesuai dengan standar yang ditetapkan
+              oleh Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT) atau Lembaga Akreditasi Mandiri (LAM) dan lembaga
+              akreditasi lainnya.</li>
+            <li>Mendampingi dan Membantu program studi dalam menyusun Laporan Evaluasi Diri (LED) dan Laporan Kinerja
+              Program Studi (LKPS) sebagai bagian dari proses akreditasi, dengan memastikan keakuratan dan kelengkapan
+              data yang diperlukan.</li>
+            <li>Memonitor pelaksanaan proses akreditasi di setiap program studi dan mengevaluasi kesiapan program studi
+              dalam memenuhi standar akreditasi yang berlaku. Memberikan umpan balik untuk perbaikan dan peningkatan
+              kualitas.</li>
+            <li>Bekerjasama dengan program studi untuk menyusun dan mengembangkan standar mutu internal yang sesuai
+              dengan kriteria akreditasi nasional dan internasional, serta mengintegrasikan standar tersebut dalam
+              aktivitas akademik.</li>
+            <li>Bertindak sebagai penghubung antara program studi dan lembaga akreditasi eksternal seperti BAN-PT dan
+              lembaga akreditasi internasional, memastikan bahwa setiap proses akreditasi berjalan sesuai dengan
+              ketentuan yang berlaku.</li>
+            <li>Mengelola penyimpanan dan pengarsipan seluruh dokumen akreditasi program studi secara sistematis dan
+              rapi untuk mempermudah akses dan penggunaan di masa mendatang.</li>
+            <li>Menyusun laporan perkembangan dan hasil akreditasi program studi secara berkala dan melaporkannya kepada
+              Wakil Direktur Bidang Akreditasi serta pimpinan DPMI.</li>
+            <li>Menyelenggarakan sosialisasi terkait proses akreditasi bagi dosen dan tenaga kependidikan di program
+              studi, serta pelatihan tentang pengisian borang dan persiapan audit akreditasi.</li>
+            <li>Memonitor secara terus-menerus apakah program studi sudah memenuhi standar akreditasi yang berlaku dan
+              mempersiapkan program studi untuk audit atau evaluasi berkala.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KABAG AKREDITASI PT -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>KEPALA BAGIAN AKREDITASI PERGURUAN TINGGI (APT)</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab memimpin dan mengoordinasikan seluruh proses persiapan akreditasi institusi
+              Universitas Presiden, termasuk pengumpulan, pengolahan, dan penyusunan dokumen yang diperlukan sesuai
+              standar Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT).</li>
+            <li>Mengelola penyusunan Laporan Evaluasi Diri (LED) institusi yang mencakup evaluasi menyeluruh terhadap
+              kinerja universitas, serta memverifikasi kesesuaian data dengan standar akreditasi yang berlaku.</li>
+            <li>Mengkoordinasikan pengumpulan data dari seluruh fakultas, program studi, dan unit pendukung untuk
+              memenuhi kriteria akreditasi perguruan tinggi. Memastikan akurasi dan relevansi data yang digunakan dalam
+              proses akreditasi.</li>
+            <li>Melakukan monitoring terhadap pelaksanaan akreditasi institusi, memastikan semua unit terkait memahami
+              tugasnya dalam memenuhi standar akreditasi, serta mengevaluasi kesiapan universitas menghadapi audit atau
+              visitasi BAN-PT.</li>
+            <li>Menjalin komunikasi yang baik dengan BAN-PT dan lembaga akreditasi terkait lainnya untuk memastikan
+              bahwa semua proses akreditasi institusi berjalan lancar sesuai dengan pedoman dan regulasi yang berlaku.
+            </li>
+            <li>Menyusun laporan hasil proses akreditasi institusi dan memberikan rekomendasi kepada pimpinan
+              universitas terkait perbaikan dan langkah strategis yang perlu diambil untuk mempertahankan atau
+              meningkatkan peringkat akreditasi.</li>
+            <li>Mengelola seluruh dokumen, arsip, dan data terkait akreditasi perguruan tinggi secara sistematis untuk
+              memudahkan akses dan persiapan audit atau evaluasi di masa mendatang.</li>
+            <li>Mengadakan sosialisasi dan pelatihan terkait persiapan akreditasi bagi pimpinan universitas, fakultas,
+              dan unit pendukung, serta memastikan semua pihak memahami peran mereka dalam proses akreditasi institusi.
+            </li>
+            <li>Memonitor secara berkala apakah universitas terus memenuhi kriteria akreditasi perguruan tinggi dan
+              mengambil langkah proaktif untuk menjaga status akreditasi institusi sesuai standar yang berlaku.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KABAG PENGEMBANGAN DAN AMI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>KEPALA BAGIAN PENGEMBANGAN DAN AUDIT MUTU INTERNAL</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab merancang, mengembangkan, dan memperbarui sistem penjaminan mutu internal yang
+              diterapkan di seluruh fakultas, program studi, dan unit kerja Universitas Presiden untuk memastikan
+              kepatuhan terhadap standar nasional dan internasional.</li>
+            <li>Memimpin pelaksanaan audit mutu internal secara berkala untuk menilai kinerja fakultas, program studi,
+              dan unit kerja dalam penerapan standar mutu. Menyusun jadwal audit, memantau pelaksanaan, serta memastikan
+              hasil audit didokumentasikan dengan baik.</li>
+            <li>Menyusun laporan hasil audit mutu internal, yang mencakup temuan audit, analisis kesesuaian, dan
+              rekomendasi perbaikan. Laporan ini disampaikan kepada pimpinan universitas dan unit terkait sebagai dasar
+              untuk peningkatan mutu berkelanjutan.</li>
+            <li>Memonitor pelaksanaan sistem penjaminan mutu di seluruh unit kerja dan melakukan evaluasi untuk
+              memastikan keberlanjutan penerapan standar mutu. Memberikan umpan balik dan rekomendasi strategis untuk
+              peningkatan.</li>
+            <li>Bekerjasama dengan unit terkait untuk mengembangkan prosedur, pedoman, dan standar operasional yang
+              sesuai dengan sistem penjaminan mutu universitas. Memastikan bahwa standar tersebut selaras dengan
+              kebijakan universitas dan regulasi eksternal.</li>
+            <li>Menyelenggarakan pelatihan dan pendampingan bagi dosen, tenaga kependidikan, dan staf administrasi
+              mengenai penjaminan mutu dan pelaksanaan audit mutu internal, guna meningkatkan pemahaman dan kemampuan
+              terkait standar mutu.</li>
+            <li>Mengelola penyimpanan dan pengarsipan seluruh dokumen dan data yang berkaitan dengan audit mutu internal
+              dan pengembangan standar mutu, serta memastikan kemudahan akses untuk keperluan audit dan evaluasi.</li>
+            <li>Mengkoordinasikan dan memonitor pelaksanaan program peningkatan mutu berkelanjutan di universitas,
+              termasuk inisiatif yang bertujuan untuk meningkatkan kualitas akademik dan layanan administratif.</li>
+            <li>Berkolaborasi dengan unit internal universitas serta lembaga eksternal yang terkait dengan penjaminan
+              mutu, guna memastikan pelaksanaan audit mutu internal sesuai dengan kebijakan dan standar eksternal yang
+              berlaku.</li>
+            <li>Berdasarkan hasil audit dan monitoring, memberikan rekomendasi strategis kepada pimpinan universitas
+              untuk memperbaiki dan meningkatkan kinerja unit terkait serta mencapai target mutu yang lebih tinggi.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KABAG SISTEM INFORMASI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>KEPALA BAGIAN SISTEM INFORMASI</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Melaksanakan kebijakan yang telah ditetapkan yang berkaitan dengan pengelolaan sistem informasi dan
+              data.</li>
+            <li>Mengelola dan memelihara sistem informasi yang ada agar berfungsi dengan baik dan memenuhi kebutuhan
+              pengguna.</li>
+            <li>Mengorganisir dan mengawasi proses pengumpulan data dari berbagai sumber di universitas dan memastikan
+              bahwa semua data dan informasi terintegrasi dengan baik.</li>
+            <li>Melakukan analisis data untuk menghasilkan informasi yang berguna bagi pengambilan keputusan di tingkat
+              universitas.</li>
+            <li>Memberikan dukungan teknis kepada pengguna sistem informasi dalam hal penggunaan dan pemecahan masalah
+              yang terkait dengan sistem.</li>
+            <li>Menyusun dokumentasi terkait sistem informasi, termasuk manual pengguna dan prosedur operasional.</li>
+            <li>Melakukan monitoring dan evaluasi terhadap penggunaan sistem informasi untuk meningkatkan kinerja dan
+              efektivitas.</li>
+            <li>Mengidentifikasi dan menerapkan inovasi dalam sistem informasi untuk meningkatkan kualitas dan prosedur
+              pengolahan data.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- KABAG PENGELOLAAN DATABASE -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>KEPALA BAGIAN PENGELOLAAN DATABASE INSTITUSI</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab untuk mengelola, memelihara, dan memperbarui seluruh database yang berkaitan dengan
+              penjaminan mutu, termasuk data akreditasi, evaluasi program studi, kinerja fakultas, dan unit kerja
+              lainnya.</li>
+            <li>Mengembangkan sistem pengelolaan database yang terintegrasi dan mudah diakses oleh unit-unit terkait di
+              Universitas Presiden. Memastikan bahwa sistem database mendukung pengumpulan data yang tepat dan dapat
+              diandalkan untuk keperluan akreditasi dan audit.</li>
+            <li>Mengkoordinasikan pengumpulan data dari seluruh fakultas, program studi, dan unit kerja, serta
+              mengintegrasikan data tersebut ke dalam satu sistem database terpusat untuk memudahkan analisis,
+              monitoring, dan pelaporan.</li>
+            <li>Melakukan verifikasi dan validasi data yang dikumpulkan untuk memastikan keakuratan, konsistensi, dan
+              relevansi data. Mengidentifikasi dan memperbaiki potensi ketidaksesuaian data yang dapat mempengaruhi
+              proses penjaminan mutu.</li>
+            <li>Bertanggung jawab menyediakan data dan laporan yang diperlukan oleh pimpinan universitas, auditor
+              internal, dan lembaga akreditasi eksternal (seperti BAN-PT) untuk keperluan akreditasi, audit mutu
+              internal, dan evaluasi kinerja.</li>
+            <li>Melakukan analisis terhadap data yang ada untuk mendukung pengambilan keputusan strategis oleh pimpinan
+              universitas terkait perbaikan dan peningkatan mutu. Menyusun laporan berdasarkan analisis data tersebut.
+            </li>
+            <li>Memastikan bahwa semua data institusi yang dikelola terjaga keamanannya, melindungi kerahasiaan
+              informasi, dan menerapkan protokol keamanan data yang memadai untuk mencegah akses yang tidak sah.</li>
+            <li>Menyusun dan menyampaikan laporan berkala terkait status dan performa pengelolaan database institusi
+              kepada pimpinan Direktorat Penjaminan Internal (DPMI) dan unit kerja terkait.</li>
+            <li>Secara aktif mengidentifikasi kebutuhan peningkatan sistem pengelolaan data dan mengusulkan solusi
+              teknologi yang lebih baik untuk mempermudah akses, pemeliharaan, dan analisis data di tingkat universitas.
+            </li>
+            <li>Bekerjasama dengan unit teknologi informasi universitas dalam hal pengelolaan infrastruktur sistem
+              database, serta dalam pengembangan fitur atau perbaikan sistem yang diperlukan untuk mendukung pengelolaan
+              data yang lebih efisien.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- STAF DPMI -->
+      <div class="job-section">
+        <div class="job-header">
+          <h2>STAF DPMI</h2>
+        </div>
+        <div class="job-content">
+          <ol>
+            <li>Bertanggung jawab mendukung implementasi dan pemeliharaan sistem penjaminan mutu di Universitas
+              Presiden. Staf berperan dalam membantu pengumpulan, pengolahan, dan penyajian data terkait evaluasi
+              kinerja fakultas, program studi, dan unit kerja lainnya.</li>
+            <li>Membantu pengelolaan administrasi yang diperlukan dalam proses akreditasi, termasuk pengarsipan dokumen,
+              pengumpulan data dari berbagai unit, dan penyusunan laporan yang diperlukan untuk audit atau akreditasi
+              internal dan eksternal.</li>
+            <li>Membantu dalam persiapan dan pelaksanaan audit mutu internal, termasuk menyiapkan dokumen pendukung,
+              mengkoordinasikan jadwal audit, serta membantu tim auditor dalam mengumpulkan informasi yang relevan dari
+              unit terkait.</li>
+            <li>Mengumpulkan data dari berbagai sumber di lingkungan universitas, memverifikasi keakuratan data, serta
+              memastikan bahwa data tersebut disusun dan disajikan sesuai dengan standar yang ditetapkan oleh Direktorat
+              Penjaminan Internal.</li>
+            <li>Membantu dalam penyusunan laporan penjaminan mutu berdasarkan data yang dikumpulkan, serta mendukung
+              pembuatan laporan berkala untuk pimpinan universitas dan lembaga akreditasi terkait.</li>
+            <li>Berkomunikasi dan berkoordinasi dengan fakultas, program studi, dan unit-unit lain di universitas
+              terkait kebutuhan data dan pelaksanaan kegiatan penjaminan mutu. Staf bertindak sebagai penghubung antara
+              DPMI dan unit-unit internal.</li>
+            <li>Bertanggung jawab dalam pengelolaan arsip dan dokumentasi yang terkait dengan penjaminan mutu,
+              akreditasi, dan audit, serta memastikan bahwa seluruh dokumen disimpan dengan baik dan mudah diakses jika
+              diperlukan.</li>
+            <li>Membantu dalam pengelolaan sistem informasi penjaminan mutu, termasuk memasukkan dan memperbarui data
+              dalam sistem, serta memastikan integritas data yang dikelola oleh DPMI.</li>
+          </ol>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+  </footer>
+</body>
+
+</html>

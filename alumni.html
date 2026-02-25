@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni - SPMI Universitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        header {
+            background-color: #203E77;
+            color: white;
+            padding: 0;
+            border-bottom: 5px solid #ffcc00;
+            overflow: visible;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: white;
+        }
+
+        .logo small {
+            font-size: 14px;
+            opacity: 0.8;
+            color: white;
+            /* Ensure text is visible on dark background */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        nav ul li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav>ul>li>a {
+            color: white;
+            font-weight: 500;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav>ul>li>a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            min-width: 220px;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        nav ul ul li {
+            height: auto;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul ul li a {
+            padding: 12px 20px;
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        nav ul ul li a:hover {
+            background-color: #00264d;
+            padding-left: 25px;
+        }
+
+        nav ul li:hover>ul {
+            display: flex;
+        }
+
+        .arrow-down {
+            font-size: 10px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        main {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1.page-title {
+            font-size: 28px;
+            color: #003366;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .fakultas-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .fakultas-header {
+            background: #003366;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .fakultas-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .prodi-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .prodi-list li {
+            border-bottom: 1px solid #eee;
+        }
+
+        .prodi-list li:last-child {
+            border-bottom: none;
+        }
+
+        .prodi-list li a {
+            display: block;
+            padding: 15px 20px;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .prodi-list li a:hover {
+            background-color: #f0f8ff;
+            color: #003366;
+            padding-left: 25px;
+        }
+
+        .prodi-list li a i {
+            margin-right: 10px;
+            color: #ffcc00;
+        }
+
+        .cert-link {
+            display: inline-block !important;
+            padding: 5px 12px !important;
+            margin: 0px 0 15px 45px;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 12px !important;
+            color: #003366 !important;
+            transition: background 0.2s;
+        }
+
+        .cert-link:hover {
+            background-color: #d1d8e0 !important;
+            color: #003366 !important;
+            padding-left: 12px !important;
+        }
+
+        .cert-link i {
+            margin-right: 6px !important;
+            color: #cc0000 !important;
+        }
+
+        footer {
+            background-color: #333;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                height: auto;
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            nav ul li {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            nav ul ul {
+                position: static;
+                display: none;
+                width: 100%;
+            }
+
+            nav ul li:hover>ul {
+                display: flex;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dropdowns = document.querySelectorAll('nav > ul > li');
+            dropdowns.forEach(function (li) {
+                var submenu = li.querySelector('ul');
+                if (!submenu) return;
+                li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
+                li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" style="display: flex; align-items: center;">
+                <img src="President_University_Logo.png" alt="Logo President University"
+                    style="height: 60px; margin-right: 15px;">
+                <div>
+                    <h1 style="margin: 0; font-size: 24px; color: white;">SPMI Universitas Presiden</h1>
+                    <small style="font-size: 14px; opacity: 0.8; color: white;">Direktorat Penjaminan Mutu
+                        Internal</small>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li>
+                        <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur
+                                    Organisasi</a></li>
+                            <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="akreditasi.html">Akreditasi</a></li>
+                    <li>
+                        <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
+                            <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="internasionalisasi.html">Internasionalisasi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <h1 class="page-title"><i class="fas fa-user-graduate"></i> Data Alumni per Program Studi</h1>
+
+            <!-- FAKULTAS BISNIS -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-briefcase"></i> Fakultas Bisnis</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Akuntansi</a>
+                        <a href="Sertipikat/Akuntansi/2409_SK_BAN-PT_Ak-PPJ_S_IV_2020.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2409_SK_BAN-PT_Ak-PPJ_S_IV_2020.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Aktuaria</a>
+                        <a href="Sertipikat/Aktuaria/106_SK_LAMSAMA_Akred_S_X_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 106_SK_LAMSAMA_Akred_S_X_2024.pdf</a>
+                        <a href="Sertipikat/Aktuaria/225_SK_LAMSAMA_Akred_S_X_2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 225_SK_LAMSAMA_Akred_S_X_2025.pdf</a>
+                        <a href="Sertipikat/Aktuaria/3023_SK_BAN-PT_Akred_S_VIII_2019.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 3023_SK_BAN-PT_Akred_S_VIII_2019.pdf</a>
+                        <a href="Sertipikat/Aktuaria/6962_SK_BAN-PT_Ak.KP_S_X_2022.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 6962_SK_BAN-PT_Ak.KP_S_X_2022.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Agribisnis</a>
+                        <a href="Sertipikat/Agribisnis/6067_SK_BAN-PT_Ak.P_S_III_2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 6067_SK_BAN-PT_Ak.P_S_III_2025.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Manajemen</a>
+                        <a href="Sertipikat/Manajemen/2141_SK_BAN-PT_Akred_S_VIII_2018.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2141_SK_BAN-PT_Akred_S_VIII_2018.pdf</a>
+                        <a href="Sertipikat/Manajemen/723_DE_A.5_AR.10_IX_2023.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> 723_DE_A.5_AR.10_IX_2023.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Magister Manajemen Teknologi</a>
+                        <a href="Sertipikat/Magister Manajemen Teknologi/2870_SK_BAN-PT_Akred_M_V_2021.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
+                            2870_SK_BAN-PT_Akred_M_V_2021.pdf</a>
+                        <a href="Sertipikat/Magister Manajemen Teknologi/552_DE_A.5_AR.10_VII_2023.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 552_DE_A.5_AR.10_VII_2023.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Doktor Manajemen</a>
+                        <a href="Sertipikat/Doktor Manajemen/2025 - Akreditasi Minimum Doktor Manajemen Universitas Presiden.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> 2025 - Akreditasi Minimum
+                            Doktor Manajemen Universitas Presiden.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Administrasi Bisnis</a>
+                        <a href="Sertipikat/Bisnis/2688_SK_BAN-PT_Akred_S_VII_2019.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2688_SK_BAN-PT_Akred_S_VII_2019.pdf</a>
+                        <a href="Sertipikat/Bisnis/75_AK.03.05_2025.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> 75_AK.03.05_2025.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS KOMPUTER -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-laptop-code"></i> Fakultas Komputer</h3>
+                </div>
+                <ul class="prodi-list">
+
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Sistem Informasi</a>
+                        <a href="Sertipikat/Sistem Informasi/2013-SK-Akreditasi-Sistem Informasi.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2013-SK-Akreditasi-Sistem
+                            Informasi.pdf</a>
+                        <a href="Sertipikat/Sistem Informasi/2018-Sertifikat Re-Akreditasi Sistem Informasi.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> 2018-Sertifikat
+                            Re-Akreditasi Sistem Informasi.pdf</a>
+                        <a href="Sertipikat/Sistem Informasi/ACBSP Accred Cert.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> ACBSP Accred Cert.pdf</a>
+                        <a href="Sertipikat/Sistem Informasi/SK Akreditasi IABEE s1 Informatika.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> SK Akreditasi IABEE s1 Informatika.pdf</a>
+                        <a href="Sertipikat/Sistem Informasi/SK Akreditasi IABEE S1 Sistem Informasi.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> SK Akreditasi IABEE S1
+                            Sistem Informasi.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Informatika</a>
+                        <a href="Sertipikat/Informatika/002_SK_LAM-INFOKOM_Ak.Int_S_XII_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i>
+                            002_SK_LAM-INFOKOM_Ak.Int_S_XII_2024.pdf</a>
+                        <a href="Sertipikat/Informatika/Akre IT.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> Akre IT.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Magister Informatika</a>
+                        <a href="Sertipikat/Magister Informatika/6291_SK_BAN-PT_Akred_M_X_2020.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 6291_SK_BAN-PT_Akred_M_X_2020.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS TEKNIK -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-cogs"></i> Fakultas Teknik</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Elektro</a>
+                        <a href="Sertipikat/Teknik Elektro/0842_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 0842_SK_LAM_Teknik_AS_XII_2024.pdf</a>
+                        <a href="Sertipikat/Teknik Elektro/4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Mesin</a>
+                        <a href="Sertipikat/Teknik Mesin/0364_SK_LAM_Teknik_AS_XII_2023.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 0364_SK_LAM_Teknik_AS_XII_2023.pdf</a>
+                        <a href="Sertipikat/Teknik Mesin/2379_SK_BAN-PT_Akred_S_VIII_2018.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2379_SK_BAN-PT_Akred_S_VIII_2018.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Lingkungan</a>
+                        <a href="Sertipikat/Teknik Lingkungan/0842_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 0842_SK_LAM_Teknik_AS_XII_2024.pdf</a>
+                        <a href="Sertipikat/Teknik Lingkungan/4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Sipil</a>
+                        <a href="Sertipikat/Teknik Sipil/0738_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 0738_SK_LAM_Teknik_AS_XII_2024.pdf</a>
+                        <a href="Sertipikat/Teknik Sipil/3689_SK_BAN-PT_Akred_S_X_2019.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 3689_SK_BAN-PT_Akred_S_X_2019.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Industri</a>
+                        <a href="Sertipikat/Teknik Industri/0582_SK_LAM_Teknik_AS_VIII_2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 0582_SK_LAM_Teknik_AS_VIII_2025.pdf</a>
+                        <a href="Sertipikat/Teknik Industri/4575_SK_BAN-PT_Akred_S_VIII_2020.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 4575_SK_BAN-PT_Akred_S_VIII_2020.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS HUMANIORA -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-user-friends"></i> Fakultas Humaniora</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Ilmu Komunikasi</a>
+                        <a href="Sertipikat/Ilmu Komunikasi/138_AK.03.05_2025.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> 138_AK.03.05_2025.pdf</a>
+                        <a href="Sertipikat/Ilmu Komunikasi/155_SK_BAN-PT_Akred_S_I_2018.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 155_SK_BAN-PT_Akred_S_I_2018.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Hubungan Internasional</a>
+                        <a href="Sertipikat/Hubungan INternasional/2400_SK_BAN-PT_Akred_S_IV_2021.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 2400_SK_BAN-PT_Akred_S_IV_2021.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> PGSD</a>
+                        <a href="Sertipikat/PGSD/536_SK_BAN-PT_Akred_S_III_2019.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 536_SK_BAN-PT_Akred_S_III_2019.pdf</a>
+                        <a href="Sertipikat/PGSD/Akre PGSD 2024.pdf" target="_blank" class="cert-link"><i
+                                class="fas fa-file-pdf"></i> Akre PGSD 2024.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS HUKUM -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-balance-scale"></i> Fakultas Hukum</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Hukum</a>
+                        <a href="Sertipikat/Hukum/3013_SK_BAN-PT_Ak-PNB_S_V_2022.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 3013_SK_BAN-PT_Ak-PNB_S_V_2022.pdf</a>
+                        <a href="Sertipikat/Hukum/7802_SK_BAN-PT_Ak.Ppj_S_X_2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 7802_SK_BAN-PT_Ak.Ppj_S_X_2025.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Magister Hukum</a>
+                        <a href="Sertipikat/Magistem Hukum/4617_SK_BAN-PT_Ak.P_M_VI_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 4617_SK_BAN-PT_Ak.P_M_VI_2024.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS SENI, DESAIN, DAN ARSITEKTUR -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-paint-brush"></i> Fakultas Seni, Desain, dan Arsitektur</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Arsitektur</a>
+                        <a href="Sertipikat/Arsitektur/8726_SK_BAN-PT_Ak_S_XII_2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 8726_SK_BAN-PT_Ak_S_XII_2025.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Desain Interior</a>
+                        <a href="Sertipikat/Desain Interior/Akreditasi Desain Interior 2025.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> Akreditasi Desain Interior 2025.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Desain Komunikasi Visual</a>
+                        <a href="Sertipikat/Desain Komunikasi Visual/210_SK_BAN-PT_Akred_S_II_2019.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 210_SK_BAN-PT_Akred_S_II_2019.pdf</a>
+                        <a href="Sertipikat/Desain Komunikasi Visual/644_SK_BAN-PT_Ak.Ppj_S_II_2024.pdf" target="_blank"
+                            class="cert-link"><i class="fas fa-file-pdf"></i> 644_SK_BAN-PT_Ak.Ppj_S_II_2024.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- FAKULTAS KEDOKTERAN -->
+            <div class="fakultas-section">
+                <div class="fakultas-header">
+                    <h3><i class="fas fa-user-md"></i> Fakultas Kedokteran</h3>
+                </div>
+                <ul class="prodi-list">
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Profesi Dokter</a>
+                        <a href="Sertipikat/Profesi Dokter/0692-162-Sertifikat_PENDIDIKAN_PROFESI_-_DOKTER_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
+                            0692-162-Sertifikat_PENDIDIKAN_PROFESI_-_DOKTER_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fas fa-angle-right"></i> Kedokteran</a>
+                        <a href="Sertipikat/Kedokteran/0691-162-Sertifikat_Sarjana_-_KEDOKTERAN_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf"
+                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
+                            0691-162-Sertifikat_Sarjana_-_KEDOKTERAN_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf</a>
+                    </li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+</body>
+
+</html>

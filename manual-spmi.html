@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual SPMI - SPMI Universitas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: #203E77;
+      color: white;
+      padding: 0;
+      border-bottom: 5px solid #ffcc00;
+      overflow: visible;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+      color: white;
+    }
+
+    .logo small {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav ul li {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a {
+      color: white;
+      font-weight: 500;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #004080;
+      min-width: 220px;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    nav ul ul li {
+      height: auto;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul li a {
+      padding: 12px 20px;
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    nav ul ul li a:hover {
+      background-color: #00264d;
+      padding-left: 25px;
+    }
+
+    nav ul li:hover>ul {
+      display: flex;
+    }
+
+    .arrow-down {
+      font-size: 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    main {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1.page-title {
+      font-size: 28px;
+      color: #003366;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .manual-intro {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      border-left: 4px solid #003366;
+    }
+
+    .manual-intro p {
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    .manual-section {
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .manual-header {
+      background: #004080;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .manual-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .version-badge {
+      background: #ffcc00;
+      color: #003366;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .manual-content {
+      padding: 20px;
+    }
+
+    .manual-content h4 {
+      color: #003366;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .manual-content ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .manual-content li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+
+    .doc-table th {
+      background: #f8f9fa;
+      padding: 12px;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+      font-weight: 600;
+    }
+
+    .doc-table td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .doc-table tr:hover {
+      background: #f8f9fa;
+    }
+
+    /* INDIKATOR TOMBOL LINK DOKUMEN */
+    .btn-download {
+      background: #28a745;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-download:hover {
+      background: #218838;
+    }
+
+    .btn-view {
+      background: #0066cc;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-view:hover {
+      background: #0052a3;
+    }
+
+    .file-type {
+      display: inline-block;
+      background: #e9ecef;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #495057;
+    }
+
+    /* INDIKATOR AREA LINK DOKUMEN */
+    .link-indicator {
+      background: #e8f4fd;
+      border: 2px dashed #0066cc;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .link-indicator h4 {
+      margin: 0 0 15px 0;
+      color: #0066cc;
+    }
+
+    .link-indicator p {
+      margin: 0 0 10px 0;
+    }
+
+    .link-indicator code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+    }
+
+    .pdca-cycle {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .pdca-item {
+      text-align: center;
+      padding: 20px;
+      border-radius: 8px;
+      min-width: 150px;
+    }
+
+    .pdca-item.plan {
+      background: #cce5ff;
+      color: #004085;
+    }
+
+    .pdca-item.do {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .pdca-item.check {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .pdca-item.act {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .pdca-item i {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .pdca-item h4 {
+      margin: 0 0 5px 0;
+      font-size: 18px;
+    }
+
+    .pdca-item p {
+      margin: 0;
+      font-size: 12px;
+    }
+
+    footer {
+      background-color: #333;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        height: auto;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      nav ul li {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      nav ul ul {
+        position: static;
+        display: none;
+        width: 100%;
+      }
+
+      nav ul li:hover>ul {
+        display: flex;
+      }
+
+      .doc-table {
+        font-size: 12px;
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var dropdowns = document.querySelectorAll('nav > ul > li');
+      dropdowns.forEach(function (li) {
+        var submenu = li.querySelector('ul');
+        if (!submenu) return;
+        li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
+        li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo" style="display: flex; align-items: center;">
+        <img src="President_University_Logo.png" alt="Logo President University"
+          style="height: 60px; margin-right: 15px;">
+        <div>
+          <h1 style="margin: 0; font-size: 24px; color: white;">SPMI Universitas Presiden</h1>
+          <small style="font-size: 14px; opacity: 0.8; color: white;">Direktorat Penjaminan Mutu Internal</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li>
+            <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur Organisasi</a></li>
+              <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
+            </ul>
+          </li>
+          <li><a href="akreditasi.html">Akreditasi</a></li>
+          <li>
+            <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
+              <li><a href="manual-spmi.html"><i class="fas fa-file-alt"></i> Manual SPMI</a></li>
+            </ul>
+          </li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="internasionalisasi.html">Internasionalisasi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <h1 class="page-title"><i class="fas fa-file-alt"></i> Manual SPMI</h1>
+
+      <div class="manual-intro">
+        <p><strong>Manual Sistem Penjaminan Mutu Internal (SPMI)</strong> merupakan dokumen utama yang mengatur
+          pelaksanaan penjaminan mutu di Universitas. Manual ini mengacu pada siklus PDCA (Plan-Do-Check-Act) sebagai
+          kerangka kerja peningkatan berkelanjutan.</p>
+      </div>
+
+      <!-- SIKLUS PDCA -->
+      <div class="pdca-cycle">
+        <div class="pdca-item plan">
+          <i class="fas fa-lightbulb"></i>
+          <h4>PLAN</h4>
+          <p>Penetapan</p>
+        </div>
+        <div class="pdca-item do">
+          <i class="fas fa-play-circle"></i>
+          <h4>DO</h4>
+          <p>Pelaksanaan</p>
+        </div>
+        <div class="pdca-item check">
+          <i class="fas fa-search"></i>
+          <h4>CHECK</h4>
+          <p>Evaluasi</p>
+        </div>
+        <div class="pdca-item act">
+          <i class="fas fa-sync-alt"></i>
+          <h4>ACT</h4>
+          <p>Pengendalian</p>
+        </div>
+      </div>
+
+      <!-- INDIKATOR LINK DOKUMEN -->
+      <div class="link-indicator">
+        <h4><i class="fas fa-info-circle"></i> Indikator Penempatan Link Dokumen</h4>
+        <p>Untuk menambahkan link dokumen manual, ubah atribut <code>href="#"</code> pada tombol di bawah dengan URL
+          dokumen yang sesungguhnya.</p>
+      </div>
+
+      <!-- MANUAL UTAMA -->
+      <div class="manual-section">
+        <div class="manual-header">
+          <h3><i class="fas fa-book-open"></i> Manual SPMI Utama</h3>
+          <span class="version-badge">Versi 2.0 - 2025</span>
+        </div>
+        <div class="manual-content">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Dokumen</th>
+                <th>Deskripsi</th>
+                <th>Format</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Manual SPMI Lengkap</strong></td>
+                <td>Dokumen lengkap manual SPMI Universitas</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <!-- INDIKATOR LINK - GANTI # DENGAN URL DOKUMEN -->
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Kebijakan Mutu</strong></td>
+                <td>Kebijakan umum penjaminan mutu institusi</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Struktur Organisasi SPMI</strong></td>
+                <td>Bagan dan uraian organisasi SPMI</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- MANUAL PDCA -->
+      <div class="manual-section">
+        <div class="manual-header">
+          <h3><i class="fas fa-cogs"></i> Manual Berdasarkan Siklus PDCA</h3>
+          <span class="version-badge">Versi 2.0 - 2025</span>
+        </div>
+        <div class="manual-content">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Siklus</th>
+                <th>Dokumen</th>
+                <th>Format</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span style="color: #004085; font-weight: bold;">PLAN</span></td>
+                <td>Manual Penetapan Standar (P)</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><span style="color: #155724; font-weight: bold;">DO</span></td>
+                <td>Manual Pelaksanaan SPMI (D)</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><span style="color: #856404; font-weight: bold;">CHECK</span></td>
+                <td>Manual Evaluasi dan Audit (C)</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><span style="color: #721c24; font-weight: bold;">ACT</span></td>
+                <td>Manual Pengendalian dan Peningkatan (A)</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- PANDUAN PELAKSANAAN -->
+      <div class="manual-section">
+        <div class="manual-header">
+          <h3><i class="fas fa-tasks"></i> Panduan Pelaksanaan</h3>
+          <span class="version-badge">Versi 2.0 - 2025</span>
+        </div>
+        <div class="manual-content">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Dokumen</th>
+                <th>Deskripsi</th>
+                <th>Format</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Panduan Audit Mutu Internal</strong></td>
+                <td>Tata cara pelaksanaan audit mutu internal</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Panduan Rapat Tinjauan Manajemen</strong></td>
+                <td>RTM dan tindak lanjutnya</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Panduan Penyusunan Borang Akreditasi</strong></td>
+                <td>Panduan pengisian borang akreditasi program studi</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Panduan Pengisian Instrumen AMI</strong></td>
+                <td>Tata cara pengisian instrumen audit mutu internal</td>
+                <td><span class="file-type">PDF</span></td>
+                <td>
+                  <a href="#" class="btn-view"><i class="fas fa-eye"></i> Lihat</a>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FORMULIR -->
+      <div class="manual-section">
+        <div class="manual-header">
+          <h3><i class="fas fa-file-signature"></i> Formulir SPMI</h3>
+          <span class="version-badge">Versi 2.0 - 2025</span>
+        </div>
+        <div class="manual-content">
+          <table class="doc-table">
+            <thead>
+              <tr>
+                <th>Formulir</th>
+                <th>Kegunaan</th>
+                <th>Format</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Formulir Rencana Audit</strong></td>
+                <td>Perencanaan kegiatan audit</td>
+                <td><span class="file-type">DOCX</span></td>
+                <td>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Formulir Laporan Audit</strong></td>
+                <td>Pelaporan hasil audit</td>
+                <td><span class="file-type">DOCX</span></td>
+                <td>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Formulir Temuan Audit</strong></td>
+                <td>Pencatatan temuan ketidaksesuaian</td>
+                <td><span class="file-type">DOCX</span></td>
+                <td>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Formulir Tindak Lanjut</strong></td>
+                <td>Rekaman tindak lanjut audit</td>
+                <td><span class="file-type">DOCX</span></td>
+                <td>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Formulir RTM</strong></td>
+                <td>Rapat Tinjauan Manajemen</td>
+                <td><span class="file-type">DOCX</span></td>
+                <td>
+                  <a href="#" class="btn-download"><i class="fas fa-download"></i> Download</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- INDIKATOR TAMBAHAN -->
+      <div class="link-indicator">
+        <h4><i class="fas fa-code"></i> Cara Menambahkan Link Dokumen</h4>
+        <p style="margin-bottom: 10px;">Contoh kode untuk menambahkan link dokumen:</p>
+        <code
+          style="display: block; background: #fff; padding: 10px; border-radius: 4px; font-size: 12px; overflow-x: auto;">
+            &lt;a href="https://domain.com/file/manual-spmi.pdf" class="btn-download"&gt;&lt;i class="fas fa-download"&gt;&lt;/i&gt; Download&lt;/a&gt;
+          </code>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+  </footer>
+</body>
+
+</html>

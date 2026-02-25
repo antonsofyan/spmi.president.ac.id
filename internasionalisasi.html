@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internasionalisasi - SPMI Universitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* --- 1. GLOBAL & LAYOUT (Consistent with index.html) --- */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: #203E77;
+            color: white;
+            padding: 0;
+            border-bottom: 5px solid #ffcc00;
+            overflow: visible;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: white;
+        }
+
+        .logo small {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        nav ul li {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav>ul>li>a {
+            color: white;
+            font-weight: 500;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        nav>ul>li>a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Dropdown */
+        nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #004080;
+            min-width: 220px;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        nav ul ul li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav ul ul li a {
+            padding: 12px 20px;
+            display: block;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        nav ul li:hover>ul {
+            display: flex;
+        }
+
+        .arrow-down {
+            font-size: 10px;
+            margin-left: 5px;
+        }
+
+        /* --- 2. LAYOUT KONTEN --- */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 30px;
+        }
+
+        main {
+            flex: 3;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        aside {
+            flex: 1;
+        }
+
+        /* --- 3. STYLING KONTEN INTERNASIONALISASI --- */
+        h1.page-title {
+            font-size: 28px;
+            color: #003366;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        h2.sub-title {
+            font-size: 20px;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .ranking-table th {
+            background-color: #004d40;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .ranking-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            vertical-align: top;
+        }
+
+        .ranking-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .badge-5star {
+            background-color: #ffcc00;
+            color: #003366;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        /* --- 4. SIDEBAR & FOOTER --- */
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #003366;
+        }
+
+        footer {
+            background-color: #333;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dropdowns = document.querySelectorAll('nav > ul > li');
+            dropdowns.forEach(function (li) {
+                var submenu = li.querySelector('ul');
+                if (!submenu) return;
+                li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
+                li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" style="display: flex; align-items: center;">
+                <img src="President_University_Logo.png" alt="Logo President University"
+                    style="height: 60px; margin-right: 15px;">
+                <div>
+                    <h1 style="margin: 0; font-size: 24px; color: white;">SPMI Universitas Presiden</h1>
+                    <small style="font-size: 14px; opacity: 0.8; color: white;">Direktorat Penjaminan Mutu
+                        Internal</small>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Beranda</a></li>
+                    <li>
+                        <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur
+                                    Organisasi</a></li>
+                            <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="akreditasi.html">Akreditasi</a></li>
+                    <li>
+                        <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
+                            <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="berita.html">Berita</a></li>
+                    <li><a href="internasionalisasi.html" style="color: #ffcc00;">Internasionalisasi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <h1 class="page-title">Internasionalisasi & Ranking</h1>
+            <p>Data perankingan universitas pada berbagai lembaga internasional untuk siklus tahun 2025.</p>
+
+            <h2 class="sub-title"><i class="fas fa-globe"></i> Ringkasan Ranking 2025</h2>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Lembaga</th>
+                        <th>Pencapaian (2025)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>QS Stars Ratings</strong></td>
+                        <td><span class="badge-5star"><i class="fas fa-star"></i> 5 Stars</span> </td>
+                    </tr>
+                    <tr>
+                        <td><strong>WURI (World University Ranking for Innovations)</strong></td>
+                        <td>
+                            • 220th of 405 Global Top 400 Innovative Universities <br>
+                            • 1st of 100 in Entrepreneurial Spirit <br>
+                            • 2nd of 74 in Crisis Management <br>
+                            • 2nd of 100 in Infrastructure/Technologies
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Edurank</strong></td>
+                        <td>50 of 592 di Indonesia | 923 of 5,830 di Asia </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Times Higher Education (THE)</strong></td>
+                        <td>
+                            • 1500+ Position <br>
+                            • 401-600 in Peace, Justice and Strong institution <br>
+                            • 601-800 in Decent Economy and Economic Growth
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>QS Asian Ranking</strong></td>
+                        <td>1201–1300 di Asia | 185 di Asia Tenggara | 53 di Indonesia </td>
+                    </tr>
+                    <tr>
+                        <td><strong>AppliedHE</strong></td>
+                        <td>16th In National | 57th in Southeast Asia </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 class="sub-title"><i class="fas fa-chart-line"></i> Visualisasi Tren UI Greenmetric</h2>
+            <p>Grafik di bawah menunjukkan perkembangan posisi universitas dalam UI Greenmetric World University
+                Rankings.</p>
+
+            <div class="chart-container">
+                <canvas id="greenmetricChart"></canvas>
+            </div>
+
+            <h2 class="sub-title"><i class="fas fa-history"></i> Milestones Historis</h2>
+            <table class="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Lembaga</th>
+                        <th>2023</th>
+                        <th>2024</th>
+                        <th>2025</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Edurank</strong></td>
+                        <td>51st di Indonesia [cite: 2]</td>
+                        <td>51st di Indonesia [cite: 2]</td>
+                        <td>50th di Indonesia </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unirank 4 ICU</strong></td>
+                        <td>-</td>
+                        <td>122 of 600 di Indonesia [cite: 2]</td>
+                        <td>122 of 600 di Indonesia </td>
+                    </tr>
+                    <tr>
+                        <td><strong>AppliedHE</strong></td>
+                        <td>-</td>
+                        <td>6th (ASEAN Research) [cite: 2]</td>
+                        <td>16th (National) </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+
+        <aside>
+            <div class="info-box">
+                <h4 style="margin-top: 0;"><i class="fas fa-info-circle"></i> Catatan Data</h4>
+                <p style="font-size: 13px;">Data disadur dari dokumen Milestone Internasionalisasi Universitas 2026.
+                    Seluruh peringkat bersifat dinamis mengikuti periode penilaian masing-masing lembaga[cite: 1, 2, 3].
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+    </footer>
+
+    <script>
+        // Data dari file Excel 
+        const ctx = document.getElementById('greenmetricChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Peringkat UI Greenmetric (Global)',
+                    data: [665, 718, 832, 664, 604, 538, 836, 736],
+                    borderColor: '#004d40',
+                    backgroundColor: 'rgba(0, 77, 64, 0.1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    fill: true,
+                    pointRadius: 5,
+                    pointHoverRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        reverse: true, // Karena angka peringkat lebih kecil berarti lebih baik
+                        title: { display: true, text: 'Peringkat Dunia' }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
