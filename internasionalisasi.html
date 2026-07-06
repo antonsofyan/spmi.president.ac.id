@@ -395,9 +395,7 @@ npm install -g 9router
             <!-- Combined Chart -->
             <div class="chart-container">
                 <h4><i class="fas fa-chart-area" style="color:#004d40;"></i> Tren Peringkat Universitas</h4>
-                <p style="font-size:13px;color:#555;">Grafik gabungan tren peringkat UI Greenmetric, WURI, Edurank, dan
-                    Applied HE (2018-2025). <em>*Semakin kecil angka peringkat (di bawah), semakin baik posisi
-                        universitas.</em></p>
+                <p style="font-size:13px;color:#555;">Grafik gabungan tren peringkat UI Greenmetric, WURI, Edurank, dan Applied HE (2018-2025). <em>*Semakin kecil angka peringkat (di bawah), semakin baik posisi universitas.</em></p>
                 <canvas id="combinedChart" height="120"></canvas>
             </div>
 
@@ -418,86 +416,86 @@ npm install -g 9router
     </footer>
 
     <script>
-        <script>
-            const ctx = document.getElementById('combinedChart');
-            if (ctx) {
-                new Chart(ctx.getContext('2d'), {
-                    type: 'line',
-                    data: {
-                        labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
-                        datasets: [
-                            {
-                                label: 'UI Greenmetric (Global)',
-                                data: [665, 718, 832, 664, 604, 538, 836, 736],
-                                borderColor: 'rgb(0, 77, 64)',
-                                backgroundColor: 'rgba(0, 77, 64, 0.1)',
-                                borderWidth: 3,
-                                tension: 0.35,
-                                fill: true,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
-                            },
-                            {
-                                label: 'WURI (Global Inovasi)',
-                                data: [null, null, null, null, 168, 209, 220, 165], // 2021: null, 2022: 168
-                                borderColor: 'rgb(230, 126, 0)',
-                                backgroundColor: 'rgba(230, 126, 0, 0.1)',
-                                borderWidth: 3,
-                                tension: 0.35,
-                                fill: false,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
-                            },
-                            {
-                                label: 'Edurank (Asia)',
-                                data: [null, null, null, null, 1100, 1023, 950, 923], // 2022: 1100
-                                borderColor: 'rgb(26, 82, 118)',
-                                backgroundColor: 'rgba(26, 82, 118, 0.1)',
-                                borderWidth: 3,
-                                tension: 0.35,
-                                fill: false,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
-                            },
-                            {
-                                label: 'Applied HE (Asia Tenggara)',
-                                data: [null, null, null, null, null, null, 57, 66], // 2024: 57
-                                borderColor: 'rgb(192, 57, 43)',
-                                backgroundColor: 'rgba(192, 57, 43, 0.1)',
-                                borderWidth: 3,
-                                tension: 0.35,
-                                fill: false,
-                                pointRadius: 5,
-                                pointHoverRadius: 8
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        spanGaps: true, // Connect lines across null values
-                        scales: {
-                            y: {
-                                reverse: true, // Angka peringkat lebih kecil di atas
-                                title: { display: true, text: 'Peringkat' }
-                            },
-                            x: {
-                                title: { display: true, text: 'Tahun' }
-                            }
+    <script>
+        const ctx = document.getElementById('combinedChart');
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [
+                        {
+                            label: 'UI Greenmetric (Global)',
+                            data: [665, 718, 832, 664, 604, 538, 836, 736],
+                            borderColor: 'rgb(0, 77, 64)',
+                            backgroundColor: 'rgba(0, 77, 64, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.35,
+                            fill: true,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
                         },
-                        plugins: {
-                            legend: { position: 'bottom' },
-                            tooltip: {
-                                mode: 'index',
-                                intersect: false,
-                            }
+                        {
+                            label: 'WURI (Global Inovasi)',
+                            data: [null, null, null, null, 168, 209, 220, 165], // 2021: null, 2022: 168
+                            borderColor: 'rgb(230, 126, 0)',
+                            backgroundColor: 'rgba(230, 126, 0, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.35,
+                            fill: false,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
                         },
-                        interaction: {
-                            mode: 'nearest',
-                            axis: 'x',
-                            intersect: false
+                        {
+                            label: 'Edurank (Asia)',
+                            data: [null, null, null, null, 1100, 1023, 950, 923], // 2022: 1100
+                            borderColor: 'rgb(26, 82, 118)',
+                            backgroundColor: 'rgba(26, 82, 118, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.35,
+                            fill: false,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
+                        },
+                        {
+                            label: 'Applied HE (Asia Tenggara)',
+                            data: [null, null, null, null, null, null, 57, 66], // 2024: 57
+                            borderColor: 'rgb(192, 57, 43)',
+                            backgroundColor: 'rgba(192, 57, 43, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.35,
+                            fill: false,
+                            pointRadius: 5,
+                            pointHoverRadius: 8
                         }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    spanGaps: true, // Connect lines across null values
+                    scales: {
+                        y: {
+                            reverse: true, // Angka peringkat lebih kecil di atas
+                            title: { display: true, text: 'Peringkat' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Tahun' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    interaction: {
+                        mode: 'nearest',
+                        axis: 'x',
+                        intersect: false
                     }
-                });
+                }
+            });
         }
     </script>
 </body>
