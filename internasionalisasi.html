@@ -355,19 +355,30 @@
                                     href="https://www.wuri.world/_files/ugd/8e5131_6e62444eaba843628392a4555f42bbda.pdf"
                                     target="_blank">WURI (World University Ranking for Innovations)</a></strong></td>
                         <td>
+                            <strong>2026:</strong><br>
                             <span class="rank-highlight">🏆 165th of 500</span> — Global Top 500 Innovative Universities
                             <ul class="sub-rank">
-                                <li>5th of 100 — Culture/Values</li>
-                                <li>5th of 100 — Infrastructure/Technology</li>
+                                <li>5th of 96 — Culture/Values Category</li>
+                                <li>5th of 99 — Infrastructure/Technologies</li>
                                 <li>3rd of 100 — AI-Based Teaching and Learning Transformation</li>
                                 <li>5th of 99 — Inclusive Social Innovation for the Underserved</li>
+                            </ul>
+                            <strong>2025:</strong><br>
+                            <span class="rank-highlight">🏆 220th of 405</span> — Global Top 400 Innovative Universities
+                            <ul class="sub-rank">
+                                <li>1st of 100 — Entrepreneurial Spirit</li>
+                                <li>2nd of 74 — Crisis Management</li>
+                                <li>2nd of 100 — Infrastructure/Technologies</li>
                             </ul>
                         </td>
                     </tr>
                     <tr>
                         <td><strong><a href="https://edurank.org/uni/president-university/rankings/"
                                     target="_blank">Edurank</a></strong></td>
-                        <td>50 of 592 di Indonesia | 923 of 5,830 di Asia </td>
+                        <td>
+                            <strong>2026:</strong> 59 of 562 di Indonesia | 1,032 of 5,830 di Asia | 3,308 of 14,131 di World<br>
+                            <strong>2025:</strong> 50 of 592 di Indonesia | 923 of 5,830 di Asia | 2,891 of 14,131 di World
+                        </td>
                     </tr>
                     <tr>
                         <td><strong><a
@@ -388,9 +399,13 @@
                         <td><strong><a href="https://appliedhe.com/rankings/private-university-ranking-asean-2026/"
                                     target="_blank">AppliedHE</a></strong></td>
                         <td>
+                            <strong>2026:</strong><br>
                             <span class="rank-highlight">🏆 66th</span> — Southeast Asia <br>
-                            <span class="rank-highlight">🏆 14th</span> — National <br>
-                            <span class="rank-highlight">🏆 151–170</span> — Asia
+                            <span class="rank-highlight">🏆 153rd</span> — Asia <br>
+                            <span class="rank-highlight">🏆 14th</span> — National <br><br>
+                            <strong>2025:</strong><br>
+                            <span class="rank-highlight">🏆 29th</span> — Southeast Asia <br>
+                            <span class="rank-highlight">🏆 10th</span> — National
                         </td>
                     </tr>
                 </tbody>
@@ -409,29 +424,7 @@
                 <canvas id="greenmetricChart"></canvas>
             </div>
 
-            <!-- Charts Grid -->
-            <div class="charts-grid">
 
-                <!-- WURI -->
-                <div class="chart-container">
-                    <h4><i class="fas fa-lightbulb" style="color:#e67e00;"></i> WURI — Peringkat Global Inovasi</h4>
-                    <canvas id="wuriChart"></canvas>
-                </div>
-
-                <!-- Edurank -->
-                <div class="chart-container">
-                    <h4><i class="fas fa-graduation-cap" style="color:#1a5276;"></i> Edurank — Peringkat di Asia</h4>
-                    <canvas id="edurankChart"></canvas>
-                </div>
-
-
-                <!-- Applied HE -->
-                <div class="chart-container">
-                    <h4><i class="fas fa-award" style="color:#c0392b;"></i> Applied HE — Peringkat Asia Tenggara</h4>
-                    <canvas id="appliedheChart"></canvas>
-                </div>
-
-            </div>
 
         </main>
 
@@ -537,34 +530,7 @@
             'rgb(0, 77, 64)', true, 'Peringkat Dunia'
         );
 
-        // ---- WURI ----
-        // Data global ranking WURI (tren tahunan)
-        makeTrendChart(
-            'wuriChart',
-            'Peringkat WURI Global Inovasi',
-            ['2021', '2022', '2023', '2024', '2025'],
-            [null, 168, 209, 220, 165],
-            'rgb(230, 126, 0)', true, 'Peringkat Global'
-        );
 
-        // ---- Edurank (Asia) ----
-        makeTrendChart(
-            'edurankChart',
-            'Edurank — Peringkat Asia',
-            ['2022', '2023', '2024', '2025'],
-            [1100, 1023, 950, 923],
-            'rgb(26, 82, 118)', true, 'Peringkat Asia'
-        );
-
-
-        // ---- Applied HE (Southeast Asia) ----
-        makeTrendChart(
-            'appliedheChart',
-            'Applied HE — Peringkat Asia Tenggara',
-            ['2023', '2024', '2025'],
-            [null, 57, 66],
-            'rgb(192, 57, 43)', true, 'Peringkat Asia Tenggara'
-        );
     </script>
 </body>
 
