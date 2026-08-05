@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Berita - SPMI Universitas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: #203E77;
+      color: white;
+      padding: 0;
+      border-bottom: 5px solid #ffcc00;
+      overflow: visible;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo h1 {
+      margin: 0;
+      font-size: 24px;
+      color: white;
+    }
+
+    .logo small {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav ul li {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a {
+      color: white;
+      font-weight: 500;
+      padding: 0 20px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #004080;
+      min-width: 220px;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    nav ul ul li {
+      height: auto;
+      width: 100%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul li a {
+      padding: 12px 20px;
+      display: block;
+      width: 100%;
+      font-size: 14px;
+      color: #fff;
+    }
+
+    nav ul ul li a:hover {
+      background-color: #00264d;
+      padding-left: 25px;
+    }
+
+    nav ul li:hover>ul {
+      display: flex;
+    }
+
+    .arrow-down {
+      font-size: 10px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    main {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1.page-title {
+      font-size: 28px;
+      color: #003366;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .news-category {
+      display: inline-block;
+      background: #ffcc00;
+      color: #003366;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .news-category.primary {
+      background-color: #003366;
+      color: white;
+    }
+
+    .news-meta {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      font-size: 12px;
+      color: #888;
+    }
+
+    footer {
+      background-color: #333;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        height: auto;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      nav ul li {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      nav ul ul {
+        position: static;
+        display: none;
+        width: 100%;
+      }
+
+      nav ul li:hover>ul {
+        display: flex;
+      }
+    }
+
+    /* --- ARTICLE DETAIL STYLES --- */
+    .article-header {
+      margin-bottom: 25px;
+    }
+
+    .article-title {
+      font-size: 32px;
+      color: #e6e8eb;
+      margin: 10px 0 15px 0;
+      line-height: 1.3;
+    }
+
+    figure {
+      margin: 40px auto;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    figure img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      border: 1px solid #eee;
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .article-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+    }
+
+    .article-content p {
+      margin-bottom: 20px;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var dropdowns = document.querySelectorAll('nav > ul > li');
+      dropdowns.forEach(function (li) {
+        var submenu = li.querySelector('ul');
+        if (!submenu) return;
+        li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
+        li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo" style="display: flex; align-items: center;">
+        <img src="President_University_Logo.png" alt="Logo President University"
+          style="height: 60px; margin-right: 15px;">
+        <div>
+          <h1 style="margin: 0; font-size: 24px; color: white;">SPMI Universitas Presiden</h1>
+          <small style="font-size: 14px; opacity: 0.8; color: white;">Direktorat Penjaminan Mutu Internal</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li>
+            <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur Organisasi</a></li>
+              <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
+            </ul>
+          </li>
+          <li><a href="akreditasi.html">Akreditasi</a></li>
+          <li>
+            <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
+              <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+            </ul>
+          </li>
+          <li><a href="berita.html">Berita</a></li>
+          <li><a href="internasionalisasi.html">Internasionalisasi</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+
+      <h1 class="page-title"><i class="fas fa-newspaper"></i> Berita & Kegiatan SPMI</h1>
+      <a href="internasionalisasi.html"
+        style="display: inline-block; margin-bottom: 20px; color: #003366; text-decoration: none;"><i
+          class="fas fa-arrow-left"></i> Kembali ke Internasionalisasi</a>
+
+      <article class="news-article">
+        <header class="article-header">
+          <span class="news-category primary">Internasionalisasi</span>
+          <h1 class="article-title" style="color: hsl(200, 18%, 97%);">President University Ranked 1st in the World for Entrepreneurial Spirit in WURI 2025</h1>
+          <div class="news-meta">
+            <span><i class="fas fa-calendar-alt"></i> 12 Juli 2025</span>
+            <span><i class="fas fa-user"></i> Admin SPMI</span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <figure style="max-width: 100%;">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+              <img src="gambar-wuri-1.png" alt="WURI 2025 Global Top 400" style="max-width: 48%; height: auto;">
+              <img src="gambar-wuri-2.png" alt="WURI 2025 Entrepreneurial Spirit" style="max-width: 48%; height: auto;">
+              <img src="gambar-wuri-3.png" alt="WURI 2025 Crisis Management" style="max-width: 48%; height: auto;">
+              <img src="gambar-wuri-4.png" alt="WURI 2025 Infrastructure and Technology" style="max-width: 48%; height: auto;">
+            </div>
+            <figcaption>President University's achievements in WURI 2025</figcaption>
+          </figure>
+          <p>President University has achieved another major international milestone in the World University Rankings for Innovation (WURI) 2025, earning 1st place globally in Entrepreneurial Spirit, as well as 2nd place worldwide in Crisis Management and Infrastructure & Technology. In addition, the university was recognized among the Global Top 400 Innovative Universities, ranking 220th in the world, further affirming its global reputation for innovation and societal impact.</p>
+
+          <p>These achievements reflect President University’s strength in fostering an educational ecosystem centered on innovation, entrepreneurship, resilience, and digital transformation. Its top global recognition in Entrepreneurial Spirit aligns with the university’s long-standing commitment to embedding entrepreneurship across the student journey through flagship programs such as Economic Survival, SetSail BizAccel, and the innovation ecosystem at Fablab Jababeka. Through this approach, students are prepared not only as job seekers, but also as creators of solutions and future enterprises.</p>
+
+          <p>President University’s excellence in Crisis Management also demonstrates the institution’s capacity to develop adaptive education systems in response to global challenges. Innovations such as The BUiLD Disaster Resilience Framework for Higher Education Institutions highlight its commitment to institutional resilience while equipping students with skills to navigate uncertainty. Meanwhile, recognition in Infrastructure & Technology underscores successful integration of technology into education through innovations such as DEMI AI, EduPlay AI, and technology-driven research and learning infrastructure.</p>
+
+          <p>President University Rector Handa S. Abidin noted that this achievement reflects the university’s enduring vision of nurturing innovative and resilient future leaders. The WURI 2025 results further reinforce President University’s position as an Indonesian university making meaningful contributions to impactful innovation on the global stage.</p>
+
+          <p>Source:<br>
+          <a href="https://megapolitan.antaranews.com/berita/421453/president-university-tempati-peringkat-pertama-dan-kedua-di-ranking-wuri-2025" target="_blank" style="color: #0056b3; text-decoration: underline;">Antara News</a><br>
+          <a href="https://id.investing.com/news/economy-news/president-university-sabet-peringkat-dunia-di-wuri-2025-bukti-komitmen-inovasi-dan-kewirausahaan-2854479" target="_blank" style="color: #0056b3; text-decoration: underline;">Investing.com</a>
+          </p>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <style>
+    /* Contact Us Footer Styles */
+    .footer-contact {
+      margin-bottom: 20px;
+    }
+
+    .footer-contact h3 {
+      margin: 0 0 10px 0;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .footer-contact p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .contact-email {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .contact-email:hover {
+      color: #ffcc00;
+      text-decoration: underline;
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px solid #555;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .footer-copyright {
+      margin: 0;
+      font-size: 14px;
+    }
+  </style>
+  <footer>
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p>
+        <i class="fas fa-envelope"></i>
+        <a href="mailto:spmi@president.ac.id" class="contact-email">spmi@president.ac.id</a>
+      </p>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-copyright">&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+  </footer>
+</body>
+
+</html>
