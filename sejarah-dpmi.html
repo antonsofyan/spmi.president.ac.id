@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Berita - SPMI Universitas</title>
+  <title>Struktur Organisasi - SPMI Universitas</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     * {
@@ -146,28 +146,87 @@
       padding-bottom: 15px;
     }
 
-    .news-category {
-      display: inline-block;
-      background: #ffcc00;
-      color: #003366;
-      padding: 4px 12px;
-      border-radius: 15px;
-      font-size: 11px;
-      font-weight: bold;
-      margin-bottom: 10px;
+    .org-chart {
+      text-align: center;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 20px 0;
     }
 
-    .news-category.primary {
-      background-color: #003366;
+    .org-box {
+      background: #003366;
       color: white;
+      padding: 15px 30px;
+      border-radius: 8px;
+      display: inline-block;
+      margin: 10px;
+      font-weight: bold;
     }
 
-    .news-meta {
+    .org-box.secondary {
+      background: #004080;
+    }
+
+    .org-box.tertiary {
+      background: #0066cc;
+    }
+
+    .org-level {
       display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
       gap: 15px;
-      align-items: center;
-      font-size: 12px;
-      color: #888;
+    }
+
+    .connector {
+      width: 2px;
+      height: 30px;
+      background: #003366;
+      margin: 0 auto;
+    }
+
+    .horizontal-line {
+      height: 2px;
+      background: #003366;
+      margin: 0 auto;
+    }
+
+    .desc-section {
+      margin-top: 40px;
+    }
+
+    .desc-section h2 {
+      color: #003366;
+      border-left: 4px solid #ffcc00;
+      padding-left: 15px;
+      margin-top: 30px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .team-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #003366;
+    }
+
+    .team-card h4 {
+      margin: 0 0 10px 0;
+      color: #003366;
+    }
+
+    .team-card p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
     }
 
     footer {
@@ -207,50 +266,6 @@
         display: flex;
       }
     }
-
-    /* --- ARTICLE DETAIL STYLES --- */
-    .article-header {
-      margin-bottom: 25px;
-    }
-
-    .article-title {
-      font-size: 32px;
-      color: #e6e8eb;
-      margin: 10px 0 15px 0;
-      line-height: 1.3;
-    }
-
-    figure {
-      margin: 40px auto;
-      text-align: center;
-      max-width: 600px;
-    }
-
-    figure img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-      border: 1px solid #eee;
-    }
-
-    figcaption {
-      margin-top: 10px;
-      font-style: italic;
-      color: #666;
-      font-size: 14px;
-    }
-
-    .article-content {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #333;
-      text-align: justify;
-    }
-
-    .article-content p {
-      margin-bottom: 20px;
-    }
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -282,6 +297,7 @@
           <li>
             <a href="#">Tentang Kami <i class="fas fa-chevron-down arrow-down"></i></a>
             <ul>
+              <li><a href="sejarah-dpmi.html"><i class="fas fa-history"></i> Sejarah DPMI</a></li>
               <li><a href="visi-misi.html"><i class="fas fa-bullseye"></i> Visi Misi</a></li>
               <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur Organisasi</a></li>
               <li><a href="uraian-tugas.html"><i class="fas fa-tasks"></i> Uraian Tugas</a></li>
@@ -304,47 +320,41 @@
 
   <div class="container">
     <main>
+      <h1 class="page-title"><i class="fas fa-history"></i> Sejarah DPMI</h1>
 
-      <h1 class="page-title"><i class="fas fa-newspaper"></i> Berita & Kegiatan SPMI</h1>
-      <a href="internasionalisasi.html"
-        style="display: inline-block; margin-bottom: 20px; color: #003366; text-decoration: none;"><i
-          class="fas fa-arrow-left"></i> Kembali ke Internasionalisasi</a>
+      <div class="desc-section"
+        style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+        <p style="font-size: 16px; line-height: 1.8; text-align: justify;">Sebelum bernama DPMI, nama unsur pelaksana
+          penjaminan mutu di Universitas
+          Presiden adalah Satuan Penjaminan Mutu Internal (SPMI). Cikal bakal terbentuknya unsur
+          pelaksana penjaminan mutu di Universitas Presiden diawali dari diterbitkannya Surat
+          Keputusan Rektor Nomor 074/Skep-1/III/2010/PU tentang Pembentukan Tim “Center For
+          Sustainability Quality Assurance (CSQA)” Universitas Presiden yang disahkan pada tanggal 23
+          Maret 2010. Pembentukan Satuan Penjaminan Mutu Internal (SPMI) selaku unsur pelaksana
+          penjaminan mutu pada awalnya tertuang dalam SK YPUP nomor 059/S-Kep1-
+          R/Pemb.SPMI/VIII/2013/PresUniv tentang pembentukan Organisasi dan Tata Kerja Satuan
+          Penjaminan Mutu Internal Universitas Presiden yang disahkan pada tanggal 30 Agustus 2013.</p>
 
-      <article class="news-article">
-        <header class="article-header">
-          <span class="news-category primary">Internasionalisasi</span>
-          <h1 class="article-title" style="color: hsl(200, 18%, 97%);">President University Ranked 1st in the World for Entrepreneurial Spirit in WURI 2025</h1>
-          <div class="news-meta">
-            <span><i class="fas fa-calendar-alt"></i> 12 Juli 2025</span>
-            <span><i class="fas fa-user"></i> Admin SPMI</span>
-          </div>
-        </header>
+        <p style="font-size: 16px; line-height: 1.8; text-align: justify;">Perubahan nama dari SPMI menjadi DPMI
+          tertuang dalam Surat Keputusan Ketua Yayasan
+          Pendidikan Universitas Presiden, Nomor: 066/SK/YPUP/DPMI/BSP/M/VII/2018 tentang
+          Perubahan Nama Satuan Penjaminan Mutu Internal (SPMI) Menjadi Direktorat Penjaminan
+          Mutu Internal (DPMI). Secara umum, Dokumen Statuta Universitas Presiden Nomor 002/YPUP-
+          PU/Statuta/V/2002 Pasal 43 juga mengatur Posisi DPMI sebagai Pelaksana Penjaminan Mutu
+          di Tingkat Universitas.</p>
 
-        <div class="article-content">
-          <figure style="max-width: 100%;">
-            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-              <img src="gambar-wuri-1.png" alt="WURI 2025 Global Top 400" style="max-width: 48%; height: auto;">
-              <img src="gambar-wuri-2.png" alt="WURI 2025 Entrepreneurial Spirit" style="max-width: 48%; height: auto;">
-              <img src="gambar-wuri-3.png" alt="WURI 2025 Crisis Management" style="max-width: 48%; height: auto;">
-              <img src="gambar-wuri-4.png" alt="WURI 2025 Infrastructure and Technology" style="max-width: 48%; height: auto;">
-            </div>
-            <figcaption>President University's achievements in WURI 2025</figcaption>
-          </figure>
-          <p>President University has achieved another major international milestone in the World University Rankings for Innovation (WURI) 2025, earning 1st place globally in Entrepreneurial Spirit, as well as 2nd place worldwide in Crisis Management and Infrastructure & Technology. In addition, the university was recognized among the Global Top 400 Innovative Universities, ranking 220th in the world, further affirming its global reputation for innovation and societal impact.</p>
-
-          <p>These achievements reflect President University’s strength in fostering an educational ecosystem centered on innovation, entrepreneurship, resilience, and digital transformation. Its top global recognition in Entrepreneurial Spirit aligns with the university’s long-standing commitment to embedding entrepreneurship across the student journey through flagship programs such as Economic Survival, SetSail BizAccel, and the innovation ecosystem at Fablab Jababeka. Through this approach, students are prepared not only as job seekers, but also as creators of solutions and future enterprises.</p>
-
-          <p>President University’s excellence in Crisis Management also demonstrates the institution’s capacity to develop adaptive education systems in response to global challenges. Innovations such as The BUiLD Disaster Resilience Framework for Higher Education Institutions highlight its commitment to institutional resilience while equipping students with skills to navigate uncertainty. Meanwhile, recognition in Infrastructure & Technology underscores successful integration of technology into education through innovations such as DEMI AI, EduPlay AI, and technology-driven research and learning infrastructure.</p>
-
-          <p>President University Rector Handa S. Abidin noted that this achievement reflects the university’s enduring vision of nurturing innovative and resilient future leaders. The WURI 2025 results further reinforce President University’s position as an Indonesian university making meaningful contributions to impactful innovation on the global stage.</p>
-
-          <p>Source:<br>
-          <a href="https://megapolitan.antaranews.com/berita/421453/president-university-tempati-peringkat-pertama-dan-kedua-di-ranking-wuri-2025" target="_blank" style="color: #0056b3; text-decoration: underline;">Antara News</a><br>
-          <a href="https://id.investing.com/news/economy-news/president-university-sabet-peringkat-dunia-di-wuri-2025-bukti-komitmen-inovasi-dan-kewirausahaan-2854479" target="_blank" style="color: #0056b3; text-decoration: underline;">Investing.com</a>
-          </p>
-        </div>
-      </article>
-
+        <p style="font-size: 16px; line-height: 1.8; text-align: justify;">Bagan yang menunjukkan Posisi DPMI dalam
+          Struktur Organisasi
+          Universitas Presiden termuat dalam Surat Keputusan Ketua Yayasan Pendidikan Universitas
+          Presiden, Nomor: 36/SK/YPUP/STO-PU/BSS/V/2022 tentang pengesahan STO Unit Kerja
+          Universitas Presiden Tahun 2022. Di dalam SK tersebut, Posisi DPMI selaku unsur pelaksana
+          penjaminan mutu di Universitas Presiden berada di bawah Rektor dan Wakil Rektor. Secara
+          khusus pengaturan Struktur Organisasi DPMI Universitas Presiden diatur dalam SK Yayasan
+          Pendidikan Universitas Presiden nomor 031.A/SK/YPUP/STO-Dok/BSS/VI/2022 tentang
+          pengesahan struktur organisasi Direktorat Penjaminan Mutu Internal Universitas Presiden
+          tahun 2022. SK tersebut menjelaskan bahwa Model kelembagaan SPMI Universitas Presiden
+          mengadopsi model Embedded.</p>
+      </div>
     </main>
   </div>
 
