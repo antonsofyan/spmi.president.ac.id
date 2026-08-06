@@ -34,6 +34,11 @@
       padding: 0;
       border-bottom: 5px solid #ffcc00;
       overflow: visible;
+      /* FIX: jadikan header stacking context sendiri dengan z-index tinggi,
+         supaya dropdown (turunannya) selalu tampil di atas konten .container di bawahnya
+         dan tidak terpotong/tertimpa */
+      position: relative;
+      z-index: 9999;
     }
 
     .header-container {
@@ -42,8 +47,14 @@
       padding: 0 20px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: stretch;
+      /* FIX: stretch (bukan center) supaya nav ikut memenuhi tinggi 80px header */
       height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
     }
 
     /* Logo */
@@ -59,6 +70,11 @@
     }
 
     /* Menu Utama */
+    nav {
+      height: 100%;
+      /* FIX: nav sekarang punya tinggi pasti (100% dari header-container yang stretch) */
+    }
+
     nav ul {
       list-style: none;
       padding: 0;
@@ -89,8 +105,7 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* --- DROPDOWN MENU STYLE --- */
-    /* Sembunyikan dropdown secara default */
+    /* --- DROPDOWN MENU STYLE (CSS-ONLY, TANPA JS) --- */
     nav ul ul {
       display: none;
       position: absolute;
@@ -100,7 +115,11 @@
       min-width: 220px;
       flex-direction: column;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1000;
+      z-index: 10000;
+      /* FIX: bridge tak kasat mata di atas submenu supaya tidak ada celah
+         antara link dan submenu saat kursor turun */
+      padding-top: 6px;
+      margin-top: -6px;
     }
 
     nav ul ul li {
@@ -122,8 +141,9 @@
       padding-left: 25px;
     }
 
-    /* Tampilkan Dropdown saat Hover */
-    nav ul li:hover>ul {
+    /* Tampilkan Dropdown saat Hover ATAU saat submenu itu sendiri di-hover */
+    nav ul li:hover>ul,
+    nav ul ul:hover {
       display: flex;
     }
 
@@ -349,6 +369,8 @@
         position: static;
         display: none;
         width: 100%;
+        padding-top: 0;
+        margin-top: 0;
       }
 
       nav ul li:hover>ul {
@@ -356,23 +378,12 @@
       }
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var dropdowns = document.querySelectorAll('nav > ul > li');
-      dropdowns.forEach(function (li) {
-        var submenu = li.querySelector('ul');
-        if (!submenu) return;
-        li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
-        li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
-      });
-    });
-  </script>
 </head>
 
 <body>
   <header>
     <div class="header-container">
-      <div class="logo" style="display: flex; align-items: center;">
+      <div class="logo">
         <img src="President_University_Logo.png" alt="Logo President University"
           style="height: 60px; margin-right: 15px;">
         <div>
@@ -426,6 +437,14 @@
         <li><b>Pengendalian & Peningkatan Mutu:</b> Memastikan siklus PPEPP (Penetapan, Pelaksanaan, Evaluasi,
           Pengendalian, Peningkatan) berjalan nyata, bukan sekadar formalitas di atas kertas.</li>
       </ul>
+
+      <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
+
+      <h2 class="sub-title">Akreditasi Perguruan Tinggi</h2>
+      <div style="text-align: center; margin: 20px 0 40px 0;">
+        <img src="sertifikat-akreditasi-pt.jpeg" alt="Sertifikat Akreditasi Perguruan Tinggi BAN-PT - Akreditasi Unggul"
+          style="max-width: 700px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
+      </div>
 
       <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
 
@@ -533,10 +552,8 @@
                 target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
             </td>
           </tr>
-          <tr>
 
-
-            <!-- FAKULTAS TEKNIK -->
+          <!-- FAKULTAS TEKNIK -->
           <tr>
             <td rowspan="5"><strong>Fakultas Teknik</strong></td>
             <td>Teknik Elektro</td>
