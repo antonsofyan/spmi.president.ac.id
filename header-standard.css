@@ -1,0 +1,122 @@
+/* Header dan navigasi standar SPMI Universitas Presiden */
+header {
+  background-color: #203E77;
+  color: white;
+  padding: 0;
+  border-bottom: 5px solid #ffcc00;
+  overflow: visible;
+  position: relative;
+  z-index: 9999;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 80px;
+}
+
+.logo { display: flex; align-items: center; }
+.logo h1 { margin: 0; font-size: 24px; color: white; }
+.logo small { font-size: 14px; opacity: 0.8; }
+
+nav { height: 100%; }
+nav > ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+nav > ul > li {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav > ul > li > a {
+  color: white;
+  font-weight: 500;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav > ul > li > a:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+nav ul ul {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: auto;
+  max-height: none;
+  background-color: #14335e;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  border-top: 3px solid #ffcc00;
+  border-radius: 0 0 6px 6px;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+nav ul ul li {
+  position: static;
+  height: auto;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul ul li:last-child { border-bottom: none; }
+nav ul ul li a {
+  padding: 12px 20px;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+nav ul ul li a:hover {
+  background-color: #0c284d;
+  padding-left: 25px;
+  color: #ffcc00;
+}
+
+nav > ul > li:hover > ul,
+nav ul ul:hover {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.arrow-down { font-size: 10px; margin-left: 5px; vertical-align: middle; }
+
+@media (max-width: 768px) {
+  .header-container { height: auto; flex-direction: column; padding: 20px; }
+  nav > ul { flex-direction: column; width: 100%; margin-top: 15px; }
+  nav > ul > li { width: 100%; justify-content: center; flex-direction: column; }
+  nav ul ul {
+    position: static;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    display: none;
+    width: 100%;
+    border-top: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  nav > ul > li:hover > ul { display: flex; }
+}

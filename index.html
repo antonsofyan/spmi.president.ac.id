@@ -75,7 +75,13 @@
       /* FIX: nav sekarang punya tinggi pasti (100% dari header-container yang stretch) */
     }
 
-    nav ul {
+    /* FIX PENTING: sebelumnya "nav ul" dan "nav ul li" pakai descendant
+       selector, sehingga ikut menimpa <ul>/<li> milik DROPDOWN juga (karena
+       dropdown ul/li juga berada "di dalam" nav ul). Akibatnya dropdown ikut
+       kena height:100% (=tinggi li=80px) dan item yang melebihi 80px
+       (misalnya item ke-3) jadi terpotong/hilang. Diganti ke child
+       combinator (>) supaya HANYA menu level-1 yang kena aturan ini. */
+    nav>ul {
       list-style: none;
       padding: 0;
       margin: 0;
@@ -84,7 +90,7 @@
       height: 100%;
     }
 
-    nav ul li {
+    nav>ul>li {
       position: relative;
       height: 100%;
       display: flex;
@@ -105,27 +111,54 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    /* --- DROPDOWN MENU STYLE (CSS-ONLY, TANPA JS) --- */
+    /* --- DROPDOWN MENU STYLE (CSS-ONLY, TANPA JS) ---
+       FIX UTAMA: sebelumnya dropdown pakai display:none -> flex yang di-toggle
+       langsung oleh :hover. Ini menyebabkan dropdown "hilang sebagian" saat
+       kursor bergerak dari menu utama menuju submenu, karena begitu kursor
+       keluar sedikit saja dari area li, elemen langsung dihapus dari render
+       (display:none) tanpa toleransi/transisi.
+
+       Solusi: gunakan visibility + opacity + transition. Elemen tetap berada
+       di posisinya (position:absolute, jadi tidak memengaruhi layout), namun
+       area hover-nya jauh lebih stabil karena tidak ada perubahan display
+       yang tiba-tiba, sehingga tidak ada lagi celah yang membuat dropdown
+       "berkedip" atau hilang sebagian. */
     nav ul ul {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #004080;
+      height: auto;
+      /* FIX: dipaksa auto secara eksplisit supaya tidak pernah kewarisan
+         height:100% dari rule manapun -- tinggi dropdown selalu menyesuaikan
+         jumlah item di dalamnya, tidak pernah terpotong. */
+      max-height: none;
+      background-color: #14335e;
+      /* selaras dengan warna header #203E77, sedikit lebih gelap agar ada kedalaman */
       min-width: 220px;
+      display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       z-index: 10000;
-      /* FIX: bridge tak kasat mata di atas submenu supaya tidak ada celah
-         antara link dan submenu saat kursor turun */
-      padding-top: 6px;
-      margin-top: -6px;
+      border-top: 3px solid #ffcc00;
+      /* aksen emas menyatu dengan border-bottom header */
+      border-radius: 0 0 6px 6px;
+      /* overflow:hidden DIHAPUS -- sebelumnya ini yang memotong item ke-3
+         saat dropdown kena height:100% (80px) dari bug di atas. */
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
 
     nav ul ul li {
+      position: static;
       height: auto;
       width: 100%;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul li:last-child {
+      border-bottom: none;
     }
 
     nav ul ul li a {
@@ -134,17 +167,25 @@
       width: 100%;
       font-size: 14px;
       color: #fff;
+      transition: background-color 0.2s ease, padding-left 0.2s ease;
     }
 
     nav ul ul li a:hover {
-      background-color: #00264d;
+      background-color: #0c284d;
       padding-left: 25px;
+      color: #ffcc00;
+      /* aksen emas saat hover, selaras dengan border-bottom header */
     }
 
-    /* Tampilkan Dropdown saat Hover ATAU saat submenu itu sendiri di-hover */
-    nav ul li:hover>ul,
+    /* Tampilkan dropdown saat li induk di-hover ATAU saat submenu itu
+       sendiri sedang di-hover (mempertahankan state saat kursor pindah
+       ke dalam dropdown). Menggunakan visibility/opacity, bukan display,
+       supaya tidak ada celah yang membuat dropdown hilang mendadak. */
+    nav>ul>li:hover>ul,
     nav ul ul:hover {
-      display: flex;
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* Panah kecil untuk indikator dropdown */
@@ -353,13 +394,13 @@
         padding: 20px;
       }
 
-      nav ul {
+      nav>ul {
         flex-direction: column;
         width: 100%;
         margin-top: 15px;
       }
 
-      nav ul li {
+      nav>ul>li {
         width: 100%;
         justify-content: center;
         flex-direction: column;
@@ -367,17 +408,22 @@
 
       nav ul ul {
         position: static;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
         display: none;
         width: 100%;
-        padding-top: 0;
-        margin-top: 0;
+        border-top: none;
+        border-radius: 0;
+        box-shadow: none;
       }
 
-      nav ul li:hover>ul {
+      nav>ul>li:hover>ul {
         display: flex;
       }
     }
   </style>
+  <link rel="stylesheet" href="header-standard.css">
 </head>
 
 <body>
