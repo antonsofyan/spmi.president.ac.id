@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumni - SPMI Universitas</title>
+    <title>Sertifikat Akreditasi - SPMI Universitas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
@@ -18,12 +18,6 @@
             padding: 0;
             color: #333;
             line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s;
         }
 
         header {
@@ -54,7 +48,6 @@
             font-size: 14px;
             opacity: 0.8;
             color: white;
-            /* Ensure text is visible on dark background */
         }
 
         nav ul {
@@ -73,16 +66,18 @@
             align-items: center;
         }
 
-        nav>ul>li>a {
+        nav>ul>li>.nav-link {
             color: white;
             font-weight: 500;
             padding: 0 20px;
             height: 100%;
             display: flex;
             align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        nav>ul>li>a:hover {
+        nav>ul>li>.nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -104,15 +99,16 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        nav ul ul li a {
+        nav ul ul li .nav-link {
             padding: 12px 20px;
             display: block;
             width: 100%;
             font-size: 14px;
             color: #fff;
+            transition: all 0.3s;
         }
 
-        nav ul ul li a:hover {
+        nav ul ul li .nav-link:hover {
             background-color: #00264d;
             padding-left: 25px;
         }
@@ -148,81 +144,150 @@
             padding-bottom: 15px;
         }
 
-        .fakultas-section {
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .fakultas-header {
-            background: #003366;
-            color: white;
-            padding: 15px 20px;
+        /* Search Filter Styling */
+        .search-container {
+            margin-bottom: 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-        }
-
-        .fakultas-header h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .prodi-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .prodi-list li {
-            border-bottom: 1px solid #eee;
-        }
-
-        .prodi-list li:last-child {
-            border-bottom: none;
-        }
-
-        .prodi-list li a {
-            display: block;
-            padding: 15px 20px;
-            color: #333;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .prodi-list li a:hover {
-            background-color: #f0f8ff;
-            color: #003366;
-            padding-left: 25px;
-        }
-
-        .prodi-list li a i {
-            margin-right: 10px;
-            color: #ffcc00;
-        }
-
-        .cert-link {
-            display: inline-block !important;
-            padding: 5px 12px !important;
-            margin: 0px 0 15px 45px;
-            background-color: #e9ecef;
+            background: #f8f9fa;
             border: 1px solid #ced4da;
-            border-radius: 4px;
-            font-size: 12px !important;
-            color: #003366 !important;
-            transition: background 0.2s;
+            border-radius: 6px;
+            padding: 8px 15px;
+            max-width: 400px;
         }
 
-        .cert-link:hover {
-            background-color: #d1d8e0 !important;
-            color: #003366 !important;
-            padding-left: 12px !important;
+        .search-container i {
+            color: #6c757d;
+            margin-right: 10px;
         }
 
-        .cert-link i {
-            margin-right: 6px !important;
-            color: #cc0000 !important;
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* Table Styling */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .akreditasi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: left;
+            background-color: white;
+        }
+
+        .akreditasi-table th {
+            background-color: #003366;
+            color: white;
+            padding: 14px 16px;
+            font-weight: 600;
+            border-bottom: 3px solid #ffcc00;
+            white-space: nowrap;
+        }
+
+        .akreditasi-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e9ecef;
+            vertical-align: middle;
+        }
+
+        .akreditasi-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .fakultas-column {
+            font-weight: 600;
+            color: #003366;
+            background-color: #f0f4f8;
+            border-right: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+
+        .prodi-column {
+            font-weight: 500;
+            color: #212529;
+            border-right: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+
+        /* Styling Hyperlink SK */
+        .sk-link {
+            color: #004080;
+            text-decoration: underline;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .sk-link:hover {
+            color: #00264d;
+        }
+
+        /* Badge Peringkat */
+        .badge-peringkat {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .badge-unggul {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .badge-a {
+            background-color: #cce5ff;
+            color: #004085;
+            border: 1px solid #b8daff;
+        }
+
+        .badge-baik-sekali {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+        }
+
+        .badge-baik {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+        }
+
+        .badge-b {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+        }
+
+        .badge-c {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .badge-sementara {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            border: 1px solid #c7d2fe;
+        }
+
+        .badge-internasional {
+            background-color: #f3e8ff;
+            color: #6b21a8;
+            border: 1px solid #e9d5ff;
         }
 
         footer {
@@ -231,6 +296,38 @@
             text-align: center;
             padding: 20px;
             margin-top: 40px;
+        }
+
+        .footer-contact {
+            margin-bottom: 20px;
+        }
+
+        .footer-contact h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .footer-contact p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .contact-email {
+            color: #ccc;
+        }
+
+        .footer-divider {
+            border: 0;
+            border-top: 1px solid #555;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .footer-copyright {
+            margin: 0;
+            font-size: 14px;
         }
 
         @media (max-width: 768px) {
@@ -261,6 +358,10 @@
             nav ul li:hover>ul {
                 display: flex;
             }
+
+            main {
+                padding: 20px;
+            }
         }
     </style>
     <script>
@@ -273,6 +374,28 @@
                 li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
             });
         });
+
+        // Search Filter Table
+        function searchTable() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var table = document.getElementById("akreditasiTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var visible = false;
+                var tds = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < tds.length; j++) {
+                    if (tds[j]) {
+                        if (tds[j].textContent.toLowerCase().indexOf(filter) > -1) {
+                            visible = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = visible ? "" : "none";
+            }
+        }
     </script>
     <link rel="stylesheet" href="header-standard.css">
 </head>
@@ -295,8 +418,9 @@
                     <li>
                         <a href="#">About Us <i class="fas fa-chevron-down arrow-down"></i></a>
                         <ul>
-                            <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur
-                                    Organisasi</a></li>
+                            <li><a href="sejarah-dpmi.html"><i class="fas fa-history"></i> Sejarah DPMI</a></li>
+                            <li><a href="visi-misi.html"><i class="fas fa-bullseye"></i> Visi Misi</a></li>
+                            <li><a href="struktur-organisasi.html"><i class="fas fa-sitemap"></i> Struktur Organisasi</a></li>
                         </ul>
                     </li>
                     <li><a href="akreditasi.html">Akreditasi</a></li>
@@ -304,11 +428,11 @@
                         <a href="#">Dokumen <i class="fas fa-chevron-down arrow-down"></i></a>
                         <ul>
                             <li><a href="dokumen-standar.html"><i class="fas fa-book"></i> Dokumen Standar</a></li>
-                            <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Alumni</a></li>
+                            <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Accreditation History</a></li>
                         </ul>
                     </li>
                     <li><a href="ami.html">AMI</a></li>
-          <li><a href="berita.html">Berita</a></li>
+                    <li><a href="berita.html">Berita</a></li>
                     <li><a href="internasionalisasi.html">Internasionalisasi</a></li>
                 </ul>
             </nav>
@@ -317,312 +441,471 @@
 
     <div class="container">
         <main>
-            <h1 class="page-title"><i class="fas fa-user-graduate"></i> Sertifikat Akreditasi Prodi</h1>
+            <h1 class="page-title"><i class="fas fa-award"></i> Sertifikat Akreditasi Perguruan Tinggi & Prodi</h1>
 
-            <!-- AKREDITASI PERGURUAN TINGGI (APT) -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-university"></i> Akreditasi Perguruan Tinggi (APT)</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Sertifikat Akreditasi APT</a>
-                        <a href="https://drive.google.com/file/d/1UQ9kmOqhsonnDAPwhiYQl59z6dgAvpNB/view?usp=drive_link"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> Akreditasi A APT 2023</a>
-                        <a href="https://drive.google.com/file/d/1OntUEsKfVe2Bbblfn71N6S22YHyooFhz/view?usp=drive_link"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> Akreditasi Unggul APT
-                            2025</a>
-                    </li>
-                </ul>
+            <!-- Search Filter Box -->
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Cari Fakultas, Prodi, atau No. SK...">
             </div>
 
-            <!-- FAKULTAS BISNIS -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-briefcase"></i> Fakultas Bisnis</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Akuntansi</a>
-                        <a href="Sertipikat/Akuntansi/2409_SK_BAN-PT_Ak-PPJ_S_IV_2020.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2409_SK_BAN-PT_Ak-PPJ_S_IV_2020.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Aktuaria</a>
-                        <a href="Sertipikat/Aktuaria/106_SK_LAMSAMA_Akred_S_X_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 106_SK_LAMSAMA_Akred_S_X_2024.pdf</a>
-                        <a href="Sertipikat/Aktuaria/225_SK_LAMSAMA_Akred_S_X_2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 225_SK_LAMSAMA_Akred_S_X_2025.pdf</a>
-                        <a href="Sertipikat/Aktuaria/3023_SK_BAN-PT_Akred_S_VIII_2019.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 3023_SK_BAN-PT_Akred_S_VIII_2019.pdf</a>
-                        <a href="Sertipikat/Aktuaria/6962_SK_BAN-PT_Ak.KP_S_X_2022.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 6962_SK_BAN-PT_Ak.KP_S_X_2022.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Agribisnis</a>
-                        <a href="Sertipikat/Agribisnis/6067_SK_BAN-PT_Ak.P_S_III_2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 6067_SK_BAN-PT_Ak.P_S_III_2025.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Manajemen</a>
-                        <a href="Sertipikat/Manajemen/2141_SK_BAN-PT_Akred_S_VIII_2018.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2141_SK_BAN-PT_Akred_S_VIII_2018.pdf</a>
-                        <a href="Sertipikat/Manajemen/723_DE_A.5_AR.10_IX_2023.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> 723_DE_A.5_AR.10_IX_2023.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Magister Manajemen Teknologi</a>
-                        <a href="Sertipikat/Magister Manajemen Teknologi/2870_SK_BAN-PT_Akred_M_V_2021.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
-                            2870_SK_BAN-PT_Akred_M_V_2021.pdf</a>
-                        <a href="Sertipikat/Magister Manajemen Teknologi/552_DE_A.5_AR.10_VII_2023.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 552_DE_A.5_AR.10_VII_2023.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Doktor Manajemen</a>
-                        <a href="Sertipikat/Doktor Manajemen/2025 - Akreditasi Minimum Doktor Manajemen Universitas Presiden.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> 2025 - Akreditasi Minimum
-                            Doktor Manajemen Universitas Presiden.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Administrasi Bisnis</a>
-                        <a href="Sertipikat/Bisnis/2688_SK_BAN-PT_Akred_S_VII_2019.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2688_SK_BAN-PT_Akred_S_VII_2019.pdf</a>
-                        <a href="Sertipikat/Bisnis/75_AK.03.05_2025.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> 75_AK.03.05_2025.pdf</a>
-                    </li>
-                </ul>
+            <!-- TABEL UTAMA -->
+            <div class="table-responsive">
+                <table class="akreditasi-table" id="akreditasiTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Fakultas</th>
+                            <th style="width: 22%;">Prodi</th>
+                            <th style="width: 33%;">No. SK / Sertifikat</th>
+                            <th style="width: 13%;">Masa Berlaku</th>
+                            <th style="width: 12%;">Peringkat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- AKREDITASI PERGURUAN TINGGI (APT) -->
+                        <tr>
+                            <td rowspan="2" class="fakultas-column"><i class="fas fa-university"></i> Akreditasi Perguruan Tinggi (APT)</td>
+                            <td rowspan="2" class="prodi-column">Sertifikat Akreditasi APT</td>
+                            <td>Akreditasi A APT 2023</td>
+                            <td>2023 - 2028</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>Akreditasi Unggul APT 2025</td>
+                            <td>2025 - 2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS BISNIS -->
+                        <tr>
+                            <td rowspan="22" class="fakultas-column"><i class="fas fa-briefcase"></i> Fakultas Bisnis</td>
+                            <td rowspan="4" class="prodi-column">Akuntansi</td>
+                            <td>003/BAN-PT/Ak-XIII/Sl/V/2010</td>
+                            <td>14/5/2010 - 14/5/2015</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>251/SK/BAN-PT/Akred/S/IV/2015</td>
+                            <td>10/4/2015 - 10/4/2020</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>7660/SK/BAN-PT/Akred/S/XI/2020</td>
+                            <td>24/11/2020 - 24/11/2025</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1VO4zltfhw7w_DaSmhzgpHbdqsKZmdE_I/view" target="_blank" class="sk-link">039/DE/A.5/LAMEMBA-U/IV/2026</a></td>
+                            <td>27/04/2026 - 27/04/2028</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="4" class="prodi-column">Aktuaria</td>
+                            <td>3023/SK/BAN-PT/Akred/S/VIII/2019</td>
+                            <td>13/8/2019 - 13/8/2024</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>6962/SK/BAN-PT/Ak.KP/S/X/2022</td>
+                            <td>5/10/2022 - 13/8/2024</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td>106/SK/LAMSAMA/Akred/S/X/2024</td>
+                            <td>21/10/2024 - 21/10/2025</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1v0ABAvSuEgLmSsNoiogMTihdGrflEt9v/view" target="_blank" class="sk-link">225/SK/LAMSAMA/Akred/S/X/2025</a></td>
+                            <td>21/10/2025 - 21/10/2029</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="prodi-column">Agribisnis</td>
+                            <td><a href="https://drive.google.com/file/d/1ku96oxAZI2U-D99Lq2zaBRYCIw1Nquy4/view" target="_blank" class="sk-link">261/SK/BAN-PT/Ak/S/II/2026</a></td>
+                            <td>24/02/2026 - 24/02/2031</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="4" class="prodi-column">Manajemen</td>
+                            <td>001/BAN-PT/Ak-XIII/Sl/IV/2010</td>
+                            <td>16/04/2010 - 16/4/2015</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>079/SK/BAN-PT/Akred/S/II/2015</td>
+                            <td>28/02/2015 - 28/2/2020</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>2141/SK/BAN-PT/Akred/S/VIII/2018</td>
+                            <td>07/8/2018 - 7/8/2023</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/164HjKvHoz-YT2wPL7qiqddJV3BFC92oA/view" target="_blank" class="sk-link">723/DE/A.5/AR.10/IX/2023</a></td>
+                            <td>18/09/2023 - 18/09/2028</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="6" class="prodi-column">Administrasi Bisnis</td>
+                            <td>017/BAN-PT/Ak-XV/Sl/VI/2012</td>
+                            <td>29/06/2012 - 29/06/2017</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>1520/SK/BAN-PT/Akred/S/V/2017</td>
+                            <td>23/05/2017 - 23/05/2022</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>2688/SK/BAN-PT/Akred/S/VII/2019</td>
+                            <td>30/07/2019 - 30/07/2024</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>3012/SK/BAN-PT/Ak-PNB/S/V/2022</td>
+                            <td>30/06/2020 - 30/07/2024</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>1702/DE/A.5/AR.10/X/2024</td>
+                            <td>28/10/2024 - 28/10/2029</td>
+                            <td><span class="badge-peringkat badge-baik-sekali">Baik Sekali</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1qlImG6xD7wnU4ld7yp47yCVf9zU94SJn/view" target="_blank" class="sk-link">75/AK.03.05/2025</a></td>
+                            <td>13/10/2025 - 13/10/2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <tr>
+                            <td rowspan="2" class="prodi-column">Magister Manajemen Teknologi</td>
+                            <td>2870/SK/BAN-PT/Akred/M/V/2021</td>
+                            <td>11/05/2021 - 11/05/2026</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/157brlG9dH-EuBjCpN62utrrD_HCjtFiH/view" target="_blank" class="sk-link">552/DE/A.5/AR.10/VII/2023</a></td>
+                            <td>23/07/2023 - 23/07/2028</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <tr>
+                            <td class="prodi-column">Doktor Manajemen</td>
+                            <td><a href="https://drive.google.com/file/d/1ku881CsIN5oNl8Cs2su59z_cZLccMv9H/view" target="_blank" class="sk-link">788/DE/A.5/AR.11/IX/2025</a></td>
+                            <td>29/09/2025 - 29/09/2030</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS KOMPUTER -->
+                        <tr>
+                            <td rowspan="12" class="fakultas-column"><i class="fas fa-laptop-code"></i> Fakultas Komputer</td>
+                            <td rowspan="3" class="prodi-column">Sistem Informasi</td>
+                            <td>151/SK/BAN-PT/Ak-XVI/S/VI/2013</td>
+                            <td>29/06/2013 - 29/06/2018</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>2734/SK/BAN-PT/Akred/S/X/2018</td>
+                            <td>02/10/2018 - 02/10/2023</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/13Gy5gS94eEAEbYPemKqd4DEngPe_Yrdl/view" target="_blank" class="sk-link">003/SK/LAM-INFOKOM/Ak.Int/S/XII/2023</a></td>
+                            <td>17/12/2023 - 17/12/2028</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td class="prodi-column">Sistem Informasi (PSDKU)</td>
+                            <td><a href="https://drive.google.com/file/d/1IKkGW8x21V_gG3C-6KPaDDwYq-OEOun1/view" target="_blank" class="sk-link">318/SK/LAM-INFOKOM/Ak.S/S/VIII/2026</a></td>
+                            <td>08/08/2026 - 31/12/2027</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="prodi-column">Informatika</td>
+                            <td>020/BAN-PT/AK-X/S1/IX/2007</td>
+                            <td>07/09/2007 - 07/09/2012</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td>211/SK/BAN-PT/Ak-XVI/S/X/2013</td>
+                            <td>19/10/2013 - 19/10/2018</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>676/SK/BAN-PT/Akred/S/IV/2019</td>
+                            <td>09/04/2019 - 09/04/2024</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1Ntz3iO2fnjQo2CBN3p9A5Dm-dXFNKRmL/view" target="_blank" class="sk-link">002/SK/LAM-INFOKOM/Ak.Int/S/XII/2024</a></td>
+                            <td>02/12/2024 - 31/03/2029</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td class="prodi-column">Informatika (PSDKU)</td>
+                            <td><a href="https://drive.google.com/file/d/1zxX_XEwvfm8yYgrgjSsIGPPqvjkWou51/view" target="_blank" class="sk-link">319/SK/LAM-INFOKOM/Ak.S/S/VIII/2026</a></td>
+                            <td>08/08/2026 - 31/12/2027</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="prodi-column">Magister Informatika</td>
+                            <td>276/SK/BAN-PT/Akred/M/VIII/2014</td>
+                            <td>09/08/2014 - 08/08/2019</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>6291/SK/BAN-PT/Akred/M/X/2020</td>
+                            <td>06/10/2020 - 06/10/2025</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1PUUzs1G99NeGbHFFrstQOXoDyMYVSVLn/view" target="_blank" class="sk-link">098/SK/LAM-INFOKOM/Ak/M/VIII/2025</a></td>
+                            <td>08/08/2025 - 08/08/2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS TEKNIK -->
+                        <tr>
+                            <td rowspan="16" class="fakultas-column"><i class="fas fa-cogs"></i> Fakultas Teknik</td>
+                            <td rowspan="4" class="prodi-column">Teknik Elektro</td>
+                            <td>021/BAN-PT/Ak-XV/Sl/VII/2012</td>
+                            <td>19/07/2012 - 19/07/2017</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>1837/SK/BAN-PT/Akred/S/VI/2017</td>
+                            <td>06/06/2017 - 06/06/2022</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>7670/SK/BAN-PT/Akred/S/XI/2020</td>
+                            <td>24/11/2020 - 24/11/2025</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1Qs_6_VZtkMc8ltaXFsofvU3N5Grwx6oR/view" target="_blank" class="sk-link">0840/SK/LAM Teknik/AS/XII/2025</a></td>
+                            <td>21/12/2025 - 21/12/2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="prodi-column">Teknik Mesin</td>
+                            <td>468/SK/BAN-PT/Akred/S/XII/2014</td>
+                            <td>15/12/2014 - 15/12/2019</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>2379/SK/BAN-PT/Akred/S/VIII/2018</td>
+                            <td>27/8/2018 - 27/08/2023</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1F2M071aWEa96KjvpoT0koAa6CN1VYafe/view" target="_blank" class="sk-link">0364/SK/LAM Teknik/AS/XII/2023</a></td>
+                            <td>21/12/2023 - 21/12/2028</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3" class="prodi-column">Teknik Lingkungan</td>
+                            <td>621/SK/BAN-PT/Akred/S/II/2018</td>
+                            <td>27/02/2018 - 27/02/2023</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>4946/SK/BAN-PT/Akred/S/VIII/2020</td>
+                            <td>26/08/2020 - 26/08/2025</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1opzYUcmqv082juPE16ePSg6t_dxMU7CM/view" target="_blank" class="sk-link">0842/SK/LAM Teknik/AS/XII/2024</a></td>
+                            <td>21/12/2024 - 21/12/2029</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="prodi-column">Teknik Sipil</td>
+                            <td>3689/SK/BAN-PT/Akred/S/X/2019</td>
+                            <td>09/10/2019 - 09/10/2024</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1gO4LAZUqcpGeEs37T12Tk94_XzclwWe_/view" target="_blank" class="sk-link">0738/SK/LAM Teknik/AS/XII/2024</a></td>
+                            <td>21/12/2024 - 21/12/2029</td>
+                            <td><span class="badge-peringkat badge-baik-sekali">Baik Sekali</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4" class="prodi-column">Teknik Industri</td>
+                            <td>022/BAN-PT/Ak-XV/Sl/VII/2012</td>
+                            <td>27/02/2012 - 27/02/2019</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>1262/SK/BAN-PT/Akred/S/XII/2015</td>
+                            <td>29/12/2015 - 29/12/2020</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>4575/SK/BAN-PT/Akred/S/VIII/2020</td>
+                            <td>11/08/2020 - 11/08/2025</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1rtQg8PfkFw4ssCaVMuNa4RdPg16BEeXm/view" target="_blank" class="sk-link">0582/SK/LAM Teknik/AS/VIII/2025</a></td>
+                            <td>14/08/2025 - 14/08/2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS ILMU SOSIAL DAN PENDIDIKAN -->
+                        <tr>
+                            <td rowspan="11" class="fakultas-column"><i class="fas fa-user-friends"></i> Fakultas Ilmu Sosial dan Pendidikan</td>
+                            <td rowspan="4" class="prodi-column">Ilmu Komunikasi</td>
+                            <td>032/BAN-PT/Ak-XV/S1/X/2012</td>
+                            <td>18/10/2012 - 18/10/2017</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>155/SK/BAN-PT/Akred/S/I/2018</td>
+                            <td>03/01/2018 - 03/01/2023</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>7356/SK/BAN-PT/Akred/S/XI/2020</td>
+                            <td>17/11/2020 - 17/11/2025</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1KIqDEBhlMYe7TCkSKEUebAfDrV6usrqI/view" target="_blank" class="sk-link">138/AK.03.05/2025</a></td>
+                            <td>18/11/2025 - 18/11/2030</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5" class="prodi-column">Hubungan Internasional</td>
+                            <td>019/BAN-PT/Ak-XV/Sl/VII/2012</td>
+                            <td>05/07/2012 - 05/07/2019</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>2009/SK/BAN-PT/Akred/S/VI/2017</td>
+                            <td>20/06/2017 - 20/06/2022</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>2400/SK/BAN-PT/Akred/S/IV/2021</td>
+                            <td>27/04/2021 - 27/04/2026</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>3016/SK/BAN-PT/Ak-PNB/S/V/2022</td>
+                            <td>27/04/2021 - 27/04/2026</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1yBH-1vY1eFIF_rOW-79N5qxVQNVABpfD/view" target="_blank" class="sk-link">211/AK.03.05/2026</a></td>
+                            <td>28/04/2026 - 28/04/2031</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="prodi-column">PGSD</td>
+                            <td>536/SK/BAN-PT/Akred/S/III/2019</td>
+                            <td>26/03/2019 - 26/03/2024</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1RLpYXwxagIMQZAdo-JE0FH_ElDUgJsVv/view" target="_blank" class="sk-link">524/SK/LAMDIK/Ak/S/V/2024</a></td>
+                            <td>27/03/2024 - 26/03/2029</td>
+                            <td><span class="badge-peringkat badge-unggul">Unggul</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS HUKUM -->
+                        <tr>
+                            <td rowspan="6" class="fakultas-column"><i class="fas fa-balance-scale"></i> Fakultas Hukum</td>
+                            <td rowspan="5" class="prodi-column">Hukum</td>
+                            <td>032/BAN-PT/Ak-XV/Sl/X/2012</td>
+                            <td>18/10/2012 - 18/10/2017</td>
+                            <td><span class="badge-peringkat badge-c">C</span></td>
+                        </tr>
+                        <tr>
+                            <td>1262/SK/BAN-PT/Akred/S/XII/2015</td>
+                            <td>29/12/2015 - 29/12/2020</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td>6040/SK/BAN-PT/Akred/S/IX/2020</td>
+                            <td>29/09/2020 - 29/09/2025</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td>3013/SK/BAN-PT/Ak-PNB/S/V/2022</td>
+                            <td>29/09/2020 - 29/09/2025</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1IozpUQIs4P7ZiYH0F9UdNhI9C7uY0Jui/view" target="_blank" class="sk-link">7802/SK/BAN-PT/Ak.Ppj/S/X/2025</a></td>
+                            <td>30/09/2025 - 30/09/2030</td>
+                            <td><span class="badge-peringkat badge-a">A</span></td>
+                        </tr>
+                        <tr>
+                            <td class="prodi-column">Magister Hukum</td>
+                            <td><a href="https://drive.google.com/file/d/12LexEmfaZeQd9NNy5yaMNFzYaubTZCdj/view" target="_blank" class="sk-link">4617/SK/BAN-PT/Ak.P/M/VI/2024</a></td>
+                            <td>11/06/2024 - 11/06/2029</td>
+                            <td><span class="badge-peringkat badge-sementara">Terakreditasi Sementara</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS SENI, DESAIN DAN ARSITEKTUR -->
+                        <tr>
+                            <td rowspan="4" class="fakultas-column"><i class="fas fa-paint-brush"></i> Fakultas Seni, Desain dan Arsitektur</td>
+                            <td class="prodi-column">Arsitektur</td>
+                            <td><a href="https://drive.google.com/file/d/15hxia-9rvfzMSkBFaEc8PM4gcjf3n9gH/view" target="_blank" class="sk-link">8726/SK/BAN-PT/Ak/S/XII/2025</a></td>
+                            <td>16/12/2025 - 16/12/2030</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td class="prodi-column">Desain Interior</td>
+                            <td><a href="https://drive.google.com/file/d/193M5HYZJxbrzBzWZtyzfN0Q6oVsEwxv-/view" target="_blank" class="sk-link">6239/SK/BAN-PT/Ak/S/III/2026</a></td>
+                            <td>21/03/2026 - 31/03/2031</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="prodi-column">Desain Komunikasi Visual</td>
+                            <td>210/SK/BAN-PT/Akred/S/II/2019</td>
+                            <td>26/02/2019 - 26/02/2024</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://drive.google.com/file/d/1qthciGEKoF9JlpxxYCKBpqpNE5Ck_hHQ/view" target="_blank" class="sk-link">644/SK/BAN-PT/Ak.Ppj/S/II/2024</a></td>
+                            <td>27/02/2024 - 27/02/2029</td>
+                            <td><span class="badge-peringkat badge-b">B</span></td>
+                        </tr>
+
+                        <!-- FAKULTAS KEDOKTERAN -->
+                        <tr>
+                            <td rowspan="2" class="fakultas-column"><i class="fas fa-user-md"></i> Fakultas Kedokteran</td>
+                            <td class="prodi-column">Profesi Dokter</td>
+                            <td><a href="https://drive.google.com/file/d/13esqzrI7sIx6-TDeSQdRxXb79ofhxmZE/view" target="_blank" class="sk-link">0692/LAM-PTKes/Akr/Pro/V/2025</a></td>
+                            <td>24/05/2025 - 24/05/2029</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                        <tr>
+                            <td class="prodi-column">Kedokteran</td>
+                            <td><a href="https://drive.google.com/file/d/1Vn4DJjDtUFjVa7ZDCPvyJ6XNNXVmUcH2/view" target="_blank" class="sk-link">0691/LAM-PTKes/Akr/Sar/V/2025</a></td>
+                            <td>24/05/2025 - 23/05/2030</td>
+                            <td><span class="badge-peringkat badge-baik">Baik</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <!-- FAKULTAS KOMPUTER -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-laptop-code"></i> Fakultas Komputer</h3>
-                </div>
-                <ul class="prodi-list">
-
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Sistem Informasi</a>
-                        <a href="Sertipikat/Sistem Informasi/2013-SK-Akreditasi-Sistem Informasi.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2013-SK-Akreditasi-Sistem
-                            Informasi.pdf</a>
-                        <a href="Sertipikat/Sistem Informasi/2018-Sertifikat Re-Akreditasi Sistem Informasi.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> 2018-Sertifikat
-                            Re-Akreditasi Sistem Informasi.pdf</a>
-                        <a href="Sertipikat/Sistem Informasi/ACBSP Accred Cert.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> ACBSP Accred Cert.pdf</a>
-                        <a href="Sertipikat/Sistem Informasi/SK Akreditasi IABEE s1 Informatika.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> SK Akreditasi IABEE s1 Informatika.pdf</a>
-                        <a href="Sertipikat/Sistem Informasi/SK Akreditasi IABEE S1 Sistem Informasi.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i> SK Akreditasi IABEE S1
-                            Sistem Informasi.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Informatika</a>
-                        <a href="Sertipikat/Informatika/002_SK_LAM-INFOKOM_Ak.Int_S_XII_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i>
-                            002_SK_LAM-INFOKOM_Ak.Int_S_XII_2024.pdf</a>
-                        <a href="Sertipikat/Informatika/Akre IT.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> Akre IT.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Magister Informatika</a>
-                        <a href="Sertipikat/Magister Informatika/6291_SK_BAN-PT_Akred_M_X_2020.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 6291_SK_BAN-PT_Akred_M_X_2020.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- FAKULTAS TEKNIK -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-cogs"></i> Fakultas Teknik</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Elektro</a>
-                        <a href="Sertipikat/Teknik Elektro/0842_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 0842_SK_LAM_Teknik_AS_XII_2024.pdf</a>
-                        <a href="Sertipikat/Teknik Elektro/4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Mesin</a>
-                        <a href="Sertipikat/Teknik Mesin/0364_SK_LAM_Teknik_AS_XII_2023.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 0364_SK_LAM_Teknik_AS_XII_2023.pdf</a>
-                        <a href="Sertipikat/Teknik Mesin/2379_SK_BAN-PT_Akred_S_VIII_2018.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2379_SK_BAN-PT_Akred_S_VIII_2018.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Lingkungan</a>
-                        <a href="Sertipikat/Teknik Lingkungan/0842_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 0842_SK_LAM_Teknik_AS_XII_2024.pdf</a>
-                        <a href="Sertipikat/Teknik Lingkungan/4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 4946_SK_BAN-PT_Akred_S_VIII_2020,.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Sipil</a>
-                        <a href="Sertipikat/Teknik Sipil/0738_SK_LAM_Teknik_AS_XII_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 0738_SK_LAM_Teknik_AS_XII_2024.pdf</a>
-                        <a href="Sertipikat/Teknik Sipil/3689_SK_BAN-PT_Akred_S_X_2019.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 3689_SK_BAN-PT_Akred_S_X_2019.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Teknik Industri</a>
-                        <a href="Sertipikat/Teknik Industri/0582_SK_LAM_Teknik_AS_VIII_2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 0582_SK_LAM_Teknik_AS_VIII_2025.pdf</a>
-                        <a href="Sertipikat/Teknik Industri/4575_SK_BAN-PT_Akred_S_VIII_2020.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 4575_SK_BAN-PT_Akred_S_VIII_2020.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- FAKULTAS HUMANIORA -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-user-friends"></i> Fakultas Humaniora</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Ilmu Komunikasi</a>
-                        <a href="Sertipikat/Ilmu Komunikasi/138_AK.03.05_2025.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> 138_AK.03.05_2025.pdf</a>
-                        <a href="Sertipikat/Ilmu Komunikasi/155_SK_BAN-PT_Akred_S_I_2018.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 155_SK_BAN-PT_Akred_S_I_2018.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Hubungan Internasional</a>
-                        <a href="Sertipikat/Hubungan INternasional/2400_SK_BAN-PT_Akred_S_IV_2021.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 2400_SK_BAN-PT_Akred_S_IV_2021.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> PGSD</a>
-                        <a href="Sertipikat/PGSD/536_SK_BAN-PT_Akred_S_III_2019.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 536_SK_BAN-PT_Akred_S_III_2019.pdf</a>
-                        <a href="Sertipikat/PGSD/Akre PGSD 2024.pdf" target="_blank" class="cert-link"><i
-                                class="fas fa-file-pdf"></i> Akre PGSD 2024.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- FAKULTAS HUKUM -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-balance-scale"></i> Fakultas Hukum</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Hukum</a>
-                        <a href="Sertipikat/Hukum/3013_SK_BAN-PT_Ak-PNB_S_V_2022.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 3013_SK_BAN-PT_Ak-PNB_S_V_2022.pdf</a>
-                        <a href="Sertipikat/Hukum/7802_SK_BAN-PT_Ak.Ppj_S_X_2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 7802_SK_BAN-PT_Ak.Ppj_S_X_2025.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Magister Hukum</a>
-                        <a href="Sertipikat/Magistem Hukum/4617_SK_BAN-PT_Ak.P_M_VI_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 4617_SK_BAN-PT_Ak.P_M_VI_2024.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- FAKULTAS SENI, DESAIN, DAN ARSITEKTUR -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-paint-brush"></i> Fakultas Seni, Desain, dan Arsitektur</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Arsitektur</a>
-                        <a href="Sertipikat/Arsitektur/8726_SK_BAN-PT_Ak_S_XII_2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 8726_SK_BAN-PT_Ak_S_XII_2025.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Desain Interior</a>
-                        <a href="Sertipikat/Desain Interior/Akreditasi Desain Interior 2025.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> Akreditasi Desain Interior 2025.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Desain Komunikasi Visual</a>
-                        <a href="Sertipikat/Desain Komunikasi Visual/210_SK_BAN-PT_Akred_S_II_2019.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 210_SK_BAN-PT_Akred_S_II_2019.pdf</a>
-                        <a href="Sertipikat/Desain Komunikasi Visual/644_SK_BAN-PT_Ak.Ppj_S_II_2024.pdf" target="_blank"
-                            class="cert-link"><i class="fas fa-file-pdf"></i> 644_SK_BAN-PT_Ak.Ppj_S_II_2024.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- FAKULTAS KEDOKTERAN -->
-            <div class="fakultas-section">
-                <div class="fakultas-header">
-                    <h3><i class="fas fa-user-md"></i> Fakultas Kedokteran</h3>
-                </div>
-                <ul class="prodi-list">
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Profesi Dokter</a>
-                        <a href="Sertipikat/Profesi Dokter/0692-162-Sertifikat_PENDIDIKAN_PROFESI_-_DOKTER_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
-                            0692-162-Sertifikat_PENDIDIKAN_PROFESI_-_DOKTER_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-angle-right"></i> Kedokteran</a>
-                        <a href="Sertipikat/Kedokteran/0691-162-Sertifikat_Sarjana_-_KEDOKTERAN_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf"
-                            target="_blank" class="cert-link"><i class="fas fa-file-pdf"></i>
-                            0691-162-Sertifikat_Sarjana_-_KEDOKTERAN_-_UNIVERSITAS_PRESIDEN__BEKASI_compressed.pdf</a>
-                    </li>
-                </ul>
-            </div>
-
         </main>
     </div>
 
-    <style>
-        /* Contact Us Footer Styles */
-        .footer-contact {
-            margin-bottom: 20px;
-        }
-
-        .footer-contact h3 {
-            margin: 0 0 10px 0;
-            color: #fff;
-            font-size: 18px;
-        }
-
-        .footer-contact p {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .contact-email {
-            color: #ccc;
-            text-decoration: none;
-            transition: color 0.3s ease, text-decoration 0.3s ease;
-        }
-
-        .contact-email:hover {
-            color: #ffcc00;
-            text-decoration: underline;
-        }
-
-        .footer-divider {
-            border: 0;
-            border-top: 1px solid #555;
-            margin: 20px auto;
-            width: 80%;
-            max-width: 600px;
-        }
-
-        .footer-copyright {
-            margin: 0;
-            font-size: 14px;
-        }
-    </style>
     <footer>
         <div class="footer-contact">
             <h3>Contact Us</h3>
             <p>
                 <i class="fas fa-envelope"></i>
-                <a href="mailto:spmi@president.ac.id" class="contact-email">spmi@president.ac.id</a>
+                <span class="contact-email">spmi@president.ac.id</span>
             </p>
         </div>
         <hr class="footer-divider">
