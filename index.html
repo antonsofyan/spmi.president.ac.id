@@ -272,6 +272,105 @@
       margin-bottom: 5px;
     }
 
+    .dpmi-work-section {
+      margin: 35px 0 40px;
+      padding: 25px;
+      background: linear-gradient(135deg, #f4f8fb 0%, #fffdf3 100%);
+      border: 1px solid #d9e3ec;
+      border-radius: 8px;
+    }
+
+    .dpmi-work-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 8px;
+      color: #003366;
+      font-size: 22px;
+    }
+
+    .dpmi-work-intro {
+      margin: 0 0 20px;
+      color: #5b6570;
+    }
+
+    .dpmi-work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .dpmi-work-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 205px;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #e1e6eb;
+      border-top: 4px solid #00695c;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(32, 62, 119, 0.08);
+    }
+
+    .dpmi-work-card:nth-child(2) {
+      border-top-color: #cc0000;
+    }
+
+    .dpmi-work-card:nth-child(3) {
+      border-top-color: #c49a00;
+    }
+
+    .dpmi-work-icon {
+      margin-bottom: 14px;
+      color: #00695c;
+      font-size: 25px;
+    }
+
+    .dpmi-work-card:nth-child(2) .dpmi-work-icon {
+      color: #cc0000;
+    }
+
+    .dpmi-work-card:nth-child(3) .dpmi-work-icon {
+      color: #a67c00;
+    }
+
+    .dpmi-work-card h3 {
+      margin: 0 0 9px;
+      color: #003366;
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .dpmi-work-card p {
+      flex: 1;
+      margin: 0 0 16px;
+      color: #5b6570;
+      font-size: 14px;
+    }
+
+    .dpmi-work-link {
+      align-self: flex-start;
+      color: #0066cc;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .dpmi-work-link:hover {
+      color: #003366;
+      text-decoration: underline;
+    }
+
+    .dpmi-work-status {
+      align-self: flex-start;
+      padding: 4px 9px;
+      background: #fff3cd;
+      border: 1px solid #e0c96e;
+      border-radius: 12px;
+      color: #7b5e00;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
     .ami-table {
       width: 100%;
       border-collapse: collapse;
@@ -421,6 +520,14 @@
       nav>ul>li:hover>ul {
         display: flex;
       }
+
+      .dpmi-work-section {
+        padding: 20px;
+      }
+
+      .dpmi-work-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
   <link rel="stylesheet" href="header-standard.css">
@@ -483,6 +590,31 @@
   <li><b>Pengendalian & Peningkatan Mutu (Siklus PPEPP):</b> Memastikan siklus Penetapan, Pelaksanaan, Evaluasi, Pengendalian, dan Peningkatan (PPEPP) berjalan secara substantif, terukur, dan terintegrasi di seluruh lini.</li>
 </ol>
 
+      <section class="dpmi-work-section" aria-labelledby="dpmi-work-title">
+        <h2 id="dpmi-work-title" class="dpmi-work-heading"><i class="fas fa-tasks"></i> Program Kerja DPMI</h2>
+        <p class="dpmi-work-intro">Inisiatif utama DPMI untuk mendukung pelaksanaan penjaminan mutu secara terintegrasi.</p>
+        <div class="dpmi-work-grid">
+          <article class="dpmi-work-card">
+            <i class="fas fa-clipboard-check dpmi-work-icon" aria-hidden="true"></i>
+            <h3>Instrument AMI</h3>
+            <p>Pengembangan instrumen Audit Mutu Internal untuk mendukung evaluasi mutu yang lebih terarah.</p>
+            <span class="dpmi-work-status">Work in progress</span>
+          </article>
+          <article class="dpmi-work-card">
+            <i class="fas fa-laptop-code dpmi-work-icon" aria-hidden="true"></i>
+            <h3>Sistem AMI Digital melalui Portal PUIS</h3>
+            <p>Pelaksanaan AMI secara digital melalui President University Information System.</p>
+            <a class="dpmi-work-link" href="https://puis.president.ac.id/" target="_blank" rel="noopener noreferrer">Kunjungi Portal PUIS <i class="fas fa-external-link-alt"></i></a>
+          </article>
+          <article class="dpmi-work-card">
+            <i class="fas fa-book-open dpmi-work-icon" aria-hidden="true"></i>
+            <h3>Standar SPMI</h3>
+            <p>Dokumen standar mutu sebagai acuan pelaksanaan penjaminan mutu di lingkungan universitas.</p>
+            <a class="dpmi-work-link" href="https://puis.president.ac.id/employee/quads/11923" target="_blank" rel="noopener noreferrer">Lihat Standar SPMI <i class="fas fa-external-link-alt"></i></a>
+          </article>
+        </div>
+      </section>
+
       <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
 
       <h2 class="sub-title">Akreditasi Perguruan Tinggi</h2>
@@ -491,264 +623,6 @@
           style="max-width: 700px; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);">
       </div>
 
-      <hr style="border: 0; border-top: 1px solid #ddd; margin: 30px 0;">
-
-      <h2 class="sub-title">Hasil AMI dan RTM</h2>
-      <table class="ami-table">
-        <thead>
-          <tr>
-            <th style="width: 25%;">Unit Akademik</th>
-            <th style="width: 25%;">Program Studi</th>
-            <th style="width: 25%;">Laporan AMI</th>
-            <th style="width: 25%;">Dokumen RTM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- FAKULTAS BISNIS -->
-          <tr>
-            <td rowspan="7"><strong>Fakultas Bisnis</strong></td>
-            <td>Akuntansi</td>
-            <td><a href="https://drive.google.com/file/d/1arqTQXx4f3b2Z5qCjwR0YnIcdNUJsGVb/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Aktuaria</td>
-            <td><a href="https://drive.google.com/file/d/1sejud8eLmgOFnQdotLamSCCdNBBGgzip/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Agribisnis</td>
-            <td><a href="https://drive.google.com/file/d/1flypMJex1l2b6CIC44rGSGmCL60vqWF5/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Manajemen</td>
-            <td><a href="https://drive.google.com/file/d/15REPTf8l829YTIk7J8xGU8M0QFBVTMtd/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Magister Manajemen Teknologi</td>
-            <td><a href="https://drive.google.com/file/d/1XI9X8bxghsVcgL4kBjvPhwFgc6rWTLjS/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Doktor Manajemen</td>
-            <td>-</td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Administrasi Bisnis</td>
-            <td><a href="https://drive.google.com/file/d/1kSKmSVX9wtBqOAhuILloiHmQHsTWxKr8/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS KOMPUTER -->
-          <tr>
-            <td rowspan="3"><strong>Fakultas Komputer</strong></td>
-            <td>Sistem Informasi</td>
-            <td><a href="https://drive.google.com/file/d/1LzasfBvakYdDyivF-aetqGG9200ZugBA/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Informatika</td>
-            <td><a href="https://drive.google.com/file/d/1TjM8GXuDaY3iP3k2pw2ERRI-_P_glwli/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Magister Informatika</td>
-            <td><a href="https://drive.google.com/file/d/1HeR-k6F4IP5MDY6c2PSSOZF1uvD-BXf4/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS TEKNIK -->
-          <tr>
-            <td rowspan="5"><strong>Fakultas Teknik</strong></td>
-            <td>Teknik Elektro</td>
-            <td><a href="https://drive.google.com/file/d/1fWozq9Z-RgX6IlLkngVu1FwiDPEpcSis/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Teknik Mesin</td>
-            <td><a href="https://drive.google.com/file/d/1RbzyOoUUnNdv5vot7_xYV-xsE5tC6KPW/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Teknik Lingkungan</td>
-            <td><a href="https://drive.google.com/file/d/168F2LOoigqYqt4tJeRbKqBP69HAeP3rX/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Teknik Sipil</td>
-            <td><a href="https://drive.google.com/file/d/1eq297okLBSwTj_rOc3q0o109f_hgAzGA/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Teknik Industri</td>
-            <td><a href="https://drive.google.com/file/d/1qTT07fP5jPFDpw3278v5SW9GQVG_4eKl/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS ILMU SOSIAL DAN PENDIDIKAN -->
-          <tr>
-            <td rowspan="3"><strong>Fakultas Ilmu Sosial dan Pendidikan</strong></td>
-            <td>Ilmu Komunikasi</td>
-            <td><a href="https://drive.google.com/file/d/1O79BzttA6hGVI6czN__G8XJ_mjzjTJnz/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Hubungan Internasional</td>
-            <td><a href="https://drive.google.com/file/d/1HDHY458Aio8CwrWYkkJNQLDJhaKmysuZ/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>PGSD</td>
-            <td><a href="https://drive.google.com/file/d/1VdrIpUeq611OmjfCV4V-UHX93IArjcqy/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS HUKUM -->
-          <tr>
-            <td rowspan="2"><strong>Fakultas Hukum</strong></td>
-            <td>Hukum</td>
-            <td><a href="https://drive.google.com/file/d/1fVz7sQLeShSnQF3BVqN7t8V7l9V39Eu8/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Magister Hukum</td>
-            <td><a href="https://drive.google.com/file/d/1lTe-V0kzPseGGeCd25WDrUM7P6FLbVNE/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS SENI, DESAIN, DAN ARSITEKTUR -->
-          <tr>
-            <td rowspan="3"><strong>Fakultas Seni, Desain, dan Arsitektur</strong></td>
-            <td>Arsitektur</td>
-            <td><a href="https://drive.google.com/file/d/1gkVj7Qwgi6qLW24PfU4mBp68DH8P2Lnv/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Desain Interior</td>
-            <td><a href="https://drive.google.com/file/d/1Mn0eO_rMOzhuJSWCTBICa3GSnEU9QmPp/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Desain Komunikasi Visual</td>
-            <td><a href="https://drive.google.com/file/d/1omDJhPwnmfGEkD8aC1F7yNDv3q8Yp_rR/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-
-          <!-- FAKULTAS KEDOKTERAN -->
-          <tr>
-            <td rowspan="2"><strong>Fakultas Kedokteran</strong></td>
-            <td>Profesi Dokter</td>
-            <td><a href="https://drive.google.com/file/d/1A79FD70KULc2SCa51YXG0XVDs9rGO3Y4/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>Kedokteran</td>
-            <td><a href="https://drive.google.com/file/d/1A79FD70KULc2SCa51YXG0XVDs9rGO3Y4/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-alt"></i> Lihat Dokumen</a>
-            </td>
-            <td><a href="https://drive.google.com/file/d/19HwnHYlREWTQgEEcBzpnLKc0GZszmAVt/view?usp=drive_link"
-                target="_blank" class="prodi-link"><i class="fas fa-file-pdf"></i> Lihat Dokumen</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <div style="text-align: center;">
 
       </div>
