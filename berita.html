@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -441,6 +441,7 @@
       var newsGrid = document.querySelector('.news-grid');
       if (newsGrid) {
         var releaseDates = {
+          'berita-benchmarking-umm-2026.html': '2026-08-28',
           'berita-university-ranking-readiness-workshop-2026.html': '2026-08-21',
           'berita-locus-studi.html': '2026-07-23',
           'berita-benchmarking-obe-maranatha.html': '2026-05-21',
@@ -520,6 +521,24 @@
 
       <div class="news-grid"
         style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+        <!-- CARD: BENCHMARKING UNIVERSITAS MUHAMMADIYAH MALANG -->
+        <a href="berita-benchmarking-umm-2026.html" class="news-card" style="display: flex; flex-direction: column; text-decoration: none; color: inherit; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.06); border-radius: 16px; background: white; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);"
+          onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 20px rgba(0,0,0,0.06)';">
+          <div class="news-image" style="background: url('kegiatan benchmark UMM-1.jpeg') center/cover; height: 220px; border-radius: 16px 16px 0 0; position: relative;">
+            <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);"></div>
+            <span class="news-category primary" style="position: absolute; top: 15px; left: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">News</span>
+          </div>
+          <div class="news-body" style="padding: 30px; flex-grow: 1; display: flex; flex-direction: column;">
+            <h3 class="news-title" style="font-size: 19px; line-height: 1.4; margin-bottom: 15px; color: #1a1a1a;">Benchmarking Universitas Muhammadiyah Malang: Pembelajaran Strategis untuk Penguatan Mutu dan Reputasi Internasional</h3>
+            <p class="news-excerpt" style="flex-grow: 1; color: #666; font-size: 15px; line-height: 1.6;">President University melakukan kunjungan benchmarking ke UMM untuk mempelajari praktik terbaik penjaminan mutu, akreditasi internasional, dan strategi pemeringkatan global...</p>
+            <div class="news-meta" style="margin-top: 25px; padding-top: 20px; border-top: 1px solid #f0f2f5; display: flex; justify-content: space-between; align-items: center;">
+              <span style="color: #888; font-size: 13px;"><i class="fas fa-calendar-alt" style="color: #003366; margin-right: 5px;"></i> 28 Ags 2026</span>
+              <span class="read-more" style="color: #003366; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px;">Baca <i class="fas fa-arrow-right" style="margin-left: 5px;"></i></span>
+            </div>
+          </div>
+        </a>
+
         <!-- CARD: UNIVERSITY RANKING READINESS WORKSHOP -->
         <a href="berita-university-ranking-readiness-workshop-2026.html" class="news-card" style="display: flex; flex-direction: column; text-decoration: none; color: inherit; border: none; box-shadow: 0 5px 20px rgba(0,0,0,0.06); border-radius: 16px; background: white; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);"
           onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(0,0,0,0.12)';"
