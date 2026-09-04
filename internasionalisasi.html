@@ -1,31 +1,33 @@
 ﻿<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internasionalisasi - SPMI Universitas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internationalization & Ranking - SPMI President University</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="header-standard.css" />
+    <script src="header-standard.js" defer></script>
     <style>
-        /* --- 1. GLOBAL & LAYOUT (Consistent with index.html) --- */
+        /* --- 1. GLOBAL & LAYOUT --- */
         * {
             box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f6f9;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #2c3e50;
             line-height: 1.6;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
 
         /* --- HEADER & NAVIGATION --- */
@@ -34,7 +36,10 @@
             color: white;
             padding: 0;
             border-bottom: 5px solid #ffcc00;
-            overflow: visible;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -49,13 +54,15 @@
 
         .logo h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 22px;
             color: white;
+            font-weight: 700;
         }
 
         .logo small {
-            font-size: 14px;
-            opacity: 0.8;
+            font-size: 13px;
+            opacity: 0.85;
+            color: #ffcc00;
         }
 
         nav ul {
@@ -77,14 +84,15 @@
         nav>ul>li>a {
             color: white;
             font-weight: 500;
-            padding: 0 20px;
+            padding: 0 18px;
             height: 100%;
             display: flex;
             align-items: center;
+            font-size: 15px;
         }
 
         nav>ul>li>a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.12);
         }
 
         /* Dropdown */
@@ -93,22 +101,30 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background-color: #004080;
-            min-width: 220px;
+            background-color: #172e59;
+            min-width: 230px;
             flex-direction: column;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
             z-index: 1000;
         }
 
         nav ul ul li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            width: 100%;
         }
 
         nav ul ul li a {
             padding: 12px 20px;
             display: block;
             font-size: 14px;
-            color: #fff;
+            color: #e0e0e0;
+        }
+
+        nav ul ul li a:hover {
+            background-color: #203E77;
+            color: #ffcc00;
         }
 
         nav ul li:hover>ul {
@@ -117,13 +133,99 @@
 
         .arrow-down {
             font-size: 10px;
-            margin-left: 5px;
+            margin-left: 6px;
         }
 
-        /* --- 2. LAYOUT KONTEN --- */
+        /* --- HERO BANNER --- */
+        .hero-section {
+            background: linear-gradient(135deg, #1b3260 0%, #001f3f 100%);
+            color: white;
+            padding: 50px 20px;
+            border-bottom: 4px solid #ffcc00;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: #d1d8e0;
+            max-width: 800px;
+            margin: 0;
+        }
+
+        /* --- STATS COUNTER GRID --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: -30px auto 30px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 4px solid #203E77;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            width: 55px;
+            height: 55px;
+            background: #eef3fc;
+            color: #203E77;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .stat-info h3 {
+            margin: 0;
+            font-size: 24px;
+            color: #203E77;
+            font-weight: 800;
+        }
+
+        .stat-info p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* --- LAYOUT MAIN --- */
         .container {
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 20px auto 40px auto;
             padding: 0 20px;
             display: flex;
             gap: 30px;
@@ -131,262 +233,351 @@
 
         main {
             flex: 3;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         aside {
             flex: 1;
         }
 
-        /* --- 3. STYLING KONTEN INTERNASIONALISASI --- */
-        h1.page-title {
-            font-size: 28px;
-            color: #003366;
-            margin-bottom: 25px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
+        .section-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
         }
 
         h2.sub-title {
-            font-size: 20px;
-            color: #333;
-            margin-top: 40px;
-            margin-bottom: 15px;
-            font-weight: bold;
+            font-size: 22px;
+            color: #203E77;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f0f2f5;
+            padding-bottom: 12px;
         }
 
-        .ranking-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 14px;
-        }
-
-        .ranking-table th {
-            background-color: #004d40;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-
-        .ranking-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            vertical-align: top;
-        }
-
-        .ranking-table a {
-            color: #0056b3;
-            /* Warna biru untuk link */
-            text-decoration: underline;
-            /* Garis bawah agar jelas bisa diklik */
-        }
-
-        .ranking-table a:hover {
-            color: #003366;
-            /* Warna biru lebih gelap saat kursor diarahkan (hover) */
-        }
-
-        .ranking-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        .badge-5star {
-            background-color: #ffcc00;
-            color: #003366;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        .sub-rank {
-            font-size: 12px;
-            color: #555;
-            margin-top: 6px;
-            padding-left: 8px;
-            border-left: 3px solid #004d40;
-        }
-
-        .sub-rank li {
-            margin-bottom: 3px;
-        }
-
-        .rank-highlight {
-            font-weight: bold;
-            color: #003366;
-        }
-
-        .chart-container {
-            margin-top: 30px;
-            padding: 20px;
-            background: #fdfdfd;
-            border: 1px solid #eee;
-            border-radius: 8px;
-        }
-
-        .charts-grid {
+        /* --- FEATURED CARDS GRID (PILAR) --- */
+        .pillars-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-top: 20px;
         }
 
-        .charts-grid .chart-container {
-            margin-top: 0;
+        .pillar-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
         }
 
-        .chart-container h4 {
-            margin: 0 0 12px 0;
-            color: #003366;
-            font-size: 15px;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 8px;
+        .pillar-item:hover {
+            border-color: #ffcc00;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        @media (max-width: 900px) {
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
+        .pillar-item i {
+            font-size: 28px;
+            color: #203E77;
+            margin-bottom: 12px;
         }
 
-        /* --- 4. BERITA STYLES --- */
-        .featured-news {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 2px solid #eee;
-            flex-wrap: wrap;
-        }
-
-        .featured-image {
-            flex: 1;
-            min-width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #003366, #004080);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 72px;
-        }
-
-        .featured-content {
-            flex: 1;
-            min-width: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .news-category {
-            display: inline-block;
-            background: #ffcc00;
-            color: #003366;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 11px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .news-category.primary {
-            background-color: #003366;
-            color: white;
-        }
-
-        .news-title {
+        .pillar-item h4 {
+            margin: 0 0 8px 0;
             font-size: 16px;
-            font-weight: bold;
-            color: #003366;
-            margin: 0 0 10px 0;
-            line-height: 1.4;
+            color: #203E77;
         }
 
-        .news-excerpt {
+        .pillar-item p {
+            margin: 0;
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* --- TABLE STYLING --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 10px;
             font-size: 14px;
-            color: #666;
-            margin: 0 0 15px 0;
-            line-height: 1.6;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        .news-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: #888;
-        }
-
-        .read-more {
-            color: #0066cc;
+        .ranking-table th {
+            background-color: #203E77;
+            color: white;
+            padding: 14px 16px;
+            text-align: left;
             font-weight: 600;
         }
 
-        .read-more:hover {
+        .ranking-table td {
+            border-bottom: 1px solid #edf2f7;
+            padding: 16px;
+            vertical-align: top;
+            background: #fff;
+        }
+
+        .ranking-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ranking-table tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .ranking-table a {
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+
+        .ranking-table a:hover {
+            color: #1e3a8a;
             text-decoration: underline;
         }
 
-        /* --- 5. SIDEBAR & FOOTER --- */
-        .info-box {
+        .badge-5star {
+            background-color: #fef08a;
+            color: #854d0e;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid #fde047;
+        }
+
+        .badge-tag {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+
+        .sub-rank {
+            font-size: 13px;
+            color: #475569;
+            margin-top: 8px;
+            padding-left: 12px;
+            border-left: 3px solid #ffcc00;
+            list-style: none;
+        }
+
+        .sub-rank li {
+            margin-bottom: 4px;
+            position: relative;
+        }
+
+        .rank-highlight {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        /* --- INTERNATIONAL OFFICE & MOBILITY CARDS --- */
+        .program-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .program-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            background: #ffffff;
+            position: relative;
+        }
+
+        .program-card h4 {
+            margin: 0 0 10px 0;
+            color: #203E77;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .program-card ul {
+            padding-left: 18px;
+            margin: 0;
+            font-size: 13px;
+            color: #475569;
+        }
+
+        .program-card li {
+            margin-bottom: 8px;
+        }
+
+        /* --- CHART STYLING --- */
+        .chart-container {
+            margin-top: 15px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .chart-container h4 {
+            margin: 0 0 10px 0;
+            color: #203E77;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- SIDEBAR & WIDGETS --- */
+        .widget-box {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #003366;
+            padding: 22px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+            border-top: 4px solid #203E77;
         }
 
+        .widget-box h4 {
+            margin: 0 0 14px 0;
+            color: #203E77;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .widget-box p {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0 0 10px 0;
+            line-height: 1.5;
+        }
+
+        .quick-links-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quick-links-list li {
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .quick-links-list li:last-child {
+            border-bottom: none;
+        }
+
+        .quick-links-list a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 13px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .quick-links-list a:hover {
+            color: #1d4ed8;
+            padding-left: 5px;
+        }
+
+        /* --- FOOTER STYLING --- */
         footer {
-            background-color: #333;
-            color: #ccc;
+            background-color: #1a252f;
+            color: #cbd5e1;
             text-align: center;
-            padding: 20px;
-            margin-top: 40px;
+            padding: 35px 20px;
+            margin-top: 50px;
         }
 
-        @media (max-width: 768px) {
+        .footer-contact h3 {
+            margin: 0 0 10px 0;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .footer-contact p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .contact-email {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            border: 0;
+            border-top: 1px solid #334155;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .footer-copyright {
+            margin: 0;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
             .container {
                 flex-direction: column;
+            }
+
+            .program-cards {
+                grid-template-columns: 1fr;
             }
 
             nav ul {
                 flex-direction: column;
             }
-            
-            .featured-news {
-                flex-direction: column;
+
+            .hero-title {
+                font-size: 24px;
+            }
+
+            .stats-grid {
+                margin-top: 20px;
             }
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var dropdowns = document.querySelectorAll('nav > ul > li');
-            dropdowns.forEach(function (li) {
-                var submenu = li.querySelector('ul');
-                if (!submenu) return;
-                li.addEventListener('mouseenter', function () { submenu.style.display = 'flex'; });
-                li.addEventListener('mouseleave', function () { submenu.style.display = ''; });
-            });
-        });
-    </script>
-    <link rel="stylesheet" href="header-standard.css">
-    <script src="header-standard.js" defer></script>
 </head>
 
 <body>
     <header>
         <div class="header-container">
             <div class="logo" style="display: flex; align-items: center;">
-                <img src="President_University_Logo.png" alt="Logo President University"
-                    style="height: 60px; margin-right: 15px;">
+                <img src="President_University_Logo.png" alt="President University Logo" style="height: 55px; margin-right: 15px;" />
                 <div>
-                    <h1 style="margin: 0; font-size: 24px; color: white;">Quality Assurance</h1>
-                    <small style="font-size: 14px; opacity: 0.8; color: white;">President University</small>
+                    <h1>Quality Assurance</h1>
+                    <small>President University</small>
                 </div>
             </div>
             <nav>
@@ -399,320 +590,327 @@
                         </ul>
                     </li>
                     <li>
-                      <a href="#">Accreditation <i class="fas fa-chevron-down arrow-down"></i></a>
-                      <ul>
-                        <li><a href="akreditasi.html"><i class="fas fa-certificate"></i> Accreditation</a></li>
-                        <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Accreditation History</a></li>
-                      </ul>
+                        <a href="#">Accreditation <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="akreditasi.html"><i class="fas fa-certificate"></i> Accreditation</a></li>
+                            <li><a href="alumni.html"><i class="fas fa-user-graduate"></i> Accreditation History</a></li>
+                        </ul>
                     </li>
-                    <li><a href="#">SPMI <i class="fas fa-chevron-down arrow-down"></i></a><ul><li><a href="ppepp.html"><i class="fas fa-sync-alt"></i> PPEPP Cycle</a></li><li><a href="ami.html"><i class="fas fa-clipboard-check"></i> Audit Mutu Internal</a></li></ul></li>
-          <li><a href="berita.html">News</a></li>
-                    <li><a href="internasionalisasi.html" style="color: #ffcc00;">Internationalization</a></li>
+                    <li>
+                        <a href="#">SPMI <i class="fas fa-chevron-down arrow-down"></i></a>
+                        <ul>
+                            <li><a href="ppepp.html"><i class="fas fa-sync-alt"></i> PPEPP Cycle</a></li>
+                            <li><a href="ami.html"><i class="fas fa-clipboard-check"></i> Internal Quality Audit</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="berita.html">News</a></li>
+                    <li><a href="internasionalisasi.html" style="color: #ffcc00; font-weight:bold;">Internationalization</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- HERO BANNER -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title"><i class="fas fa-globe-americas" style="color: #ffcc00;"></i> Internationalization & Global Ranking</h1>
+            <p class="hero-subtitle">
+                President University's commitment to building a world-class education ecosystem, facilitating innovative research, and producing globally competitive leaders.
+            </p>
+        </div>
+    </section>
+
+    <!-- KEY STATS COUNTER -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-passport"></i></div>
+            <div class="stat-info">
+                <h3>50+ Countries</h3>
+                <p>Alumni & International Students</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-award"></i></div>
+            <div class="stat-info">
+                <h3>5-Star</h3>
+                <p>QS Stars Rating System</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+            <div class="stat-info">
+                <h3>#1 in Indonesia</h3>
+                <p>Number of International Students</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-language"></i></div>
+            <div class="stat-info">
+                <h3>100% English</h3>
+                <p>Language of Instruction</p>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <main>
-            <h1 class="page-title">Internasionalisasi & Ranking</h1>
-            
-            <p>Data perankingan universitas pada berbagai lembaga internasional untuk siklus tahun 2025.</p>
-
-            <h2 class="sub-title"><i class="fas fa-globe"></i> Ringkasan Ranking 2025</h2>
-            <table class="ranking-table">
-                <thead>
-                    <tr>
-                        <th style="width: 40%;">Lembaga</th>
-                        <th>Pencapaian (2025)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong><a href="https://www.topuniversities.com/qs-stars" target="_blank">QS Stars
-                                    Ratings</a></strong></td>
-                        <td><span class="badge-5star"><i class="fas fa-star"></i> 5 Stars</span> </td>
-                    </tr>
-                    <tr>
-                        <td><strong><a
-                                    href="https://www.wuri.world/_files/ugd/8e5131_6e62444eaba843628392a4555f42bbda.pdf"
-                                    target="_blank">WURI (World University Ranking for Innovations)</a></strong></td>
-                        <td>
-                            <strong>2026:</strong><br>
-                            <span class="rank-highlight">🏆 165th of 500</span> — Global Top 500 Innovative Universities
-                            <ul class="sub-rank">
-                                <li>5th of 96 — Culture/Values Category</li>
-                                <li>5th of 99 — Infrastructure/Technologies</li>
-                                <li>3rd of 100 — AI-Based Teaching and Learning Transformation</li>
-                                <li>5th of 99 — Inclusive Social Innovation for the Underserved</li>
-                            </ul>
-                            <strong>2025:</strong><br>
-                            <span class="rank-highlight">🏆 220th of 405</span> — Global Top 400 Innovative Universities
-                            <ul class="sub-rank">
-                                <li>1st of 100 — Entrepreneurial Spirit</li>
-                                <li>2nd of 74 — Crisis Management</li>
-                                <li>2nd of 100 — Infrastructure/Technologies</li>
-                            </ul>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="https://edurank.org/uni/president-university/rankings/"
-                                    target="_blank">Edurank</a></strong></td>
-                        <td>
-                            <strong>2026:</strong> 59 of 562 di Indonesia | 1,032 of 5,830 di Asia | 3,308 of 14,131 di World<br>
-                            <strong>2025:</strong> 50 of 592 di Indonesia | 923 of 5,830 di Asia | 2,891 of 14,131 di World
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong><a
-                                    href="https://www.timeshighereducation.com/world-university-rankings/president-university"
-                                    target="_blank">Times Higher Education (THE)</a></strong></td>
-                        <td>
-                            • 1500+ Position <br>
-                            • 401-600 in Peace, Justice and Strong institution <br>
-                            • 601-800 in Decent Economy and Economic Growth
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="https://www.topuniversities.com/universities/president-university"
-                                    target="_blank">QS Asian Ranking</a></strong></td>
-                        <td>1201–1300 di Asia | 185 di Asia Tenggara | 53 di Indonesia </td>
-                    </tr>
-                    <tr>
-                        <td><strong><a href="https://appliedhe.com/rankings/private-university-ranking-asean-2026/"
-                                    target="_blank">AppliedHE</a></strong></td>
-                        <td>
-                            <strong>2026:</strong><br>
-                            <span class="rank-highlight">🏆 66th</span> — Southeast Asia <br>
-                            <span class="rank-highlight">🏆 153rd</span> — Asia <br>
-                            <span class="rank-highlight">🏆 14th</span> — National <br><br>
-                            <strong>2025:</strong><br>
-                            <span class="rank-highlight">🏆 29th</span> — Southeast Asia <br>
-                            <span class="rank-highlight">🏆 10th</span> — National
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2 class="sub-title"><i class="fas fa-chart-line"></i> Visualisasi Tren Ranking</h2>
-            <p>Grafik-grafik di bawah menunjukkan perkembangan posisi universitas dalam berbagai lembaga pemeringkatan
-                internasional dari tahun ke tahun.</p>
-
-            <!-- UI Greenmetric -->
-            <div class="chart-container">
-                <h4><i class="fas fa-leaf" style="color:#004d40;"></i> UI Greenmetric (Peringkat Global)</h4>
-                <p style="font-size:13px;color:#555;">Pada tahun 2025, President University meraih peringkat 736,
-                    meningkat dari peringkat 836 pada tahun 2024. President University telah berpartisipasi sejak 2018.
+            <!-- SECTION 1: INTERNATIONALIZATION PILLAR -->
+            <div class="section-card">
+                <h2 class="sub-title"><i class="fas fa-compass"></i> Campus Internationalization Pillar</h2>
+                <p style="margin-top: 0; color: #475569; font-size: 14px;">
+                    President University designs curricula and academic climate to deliver a genuine global learning experience for all academic community members.
                 </p>
-                <canvas id="greenmetricChart"></canvas>
+                
+                <div class="pillars-grid">
+                    <div class="pillar-item">
+                        <i class="fas fa-comments"></i>
+                        <h4>100% English Language Instruction</h4>
+                        <p>All teaching, exams, and thesis writing are conducted in English.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fas fa-users-slash"></i>
+                        <h4>Multicultural Environment</h4>
+                        <p>Classrooms consist of close collaboration between domestic and international students from dozens of countries.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fas fa-city"></i>
+                        <h4>Jababeka Industry Hub</h4>
+                        <p>Located in Southeast Asia's largest industrial area with internship access at global companies.</p>
+                    </div>
+                    <div class="pillar-item">
+                        <i class="fas fa-plane-departure"></i>
+                        <h4>Global Mobility</h4>
+                        <p>Student exchange programs (*inbound & outbound*), *short courses*, and international research collaborations.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Berita telah dipindahkan ke halaman berita.html. -->
-            <!-- FEATURED NEWS -->
-            <div class="featured-news" onclick="window.location.href='berita-greenmetric-2025.html'"
-              style="display: none;"
-              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.12)';"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-              <div class="featured-image"
-                style="background: url('gambar-greenmetric.png') center/cover; position: relative; border-radius: 15px 0 0 15px; background-size: cover; background-repeat: no-repeat; background-color: #003366;">
-                <div
-                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);">
+            <!-- SECTION 2: MOBILITY PROGRAMS & INTERNATIONAL OFFICE SERVICES -->
+            <div class="section-card">
+                <h2 class="sub-title"><i class="fas fa-globe-asia"></i> Mobility Programs & International Office Services</h2>
+                <p style="margin-top: 0; color: #475569; font-size: 14px;">
+                    Official services of President University's International Office facilitating international student needs, global mobility programs, and exchange scholarships.
+                </p>
+                <div class="program-cards">
+                    <div class="program-card">
+                        <h4><i class="fas fa-plane-departure" style="color: #1d4ed8;"></i> Student Mobility & Scholarships</h4>
+                        <ul>
+                            <li><strong>Student Mobility Program (Inbound & Outbound):</strong> Facilitates student and lecturer exchanges with foreign partner universities and incoming international students at President University.</li>
+                            <li><strong>Mobility Scholarships:</strong> Support through scholarships like DAAD (EMPM program), Indonesian Aid Scholarship (TIAS), Southeast Asia Leadership Program, and CMK Hyundai.</li>
+                            <li><strong>Visa & Immigration Support:</strong> Comprehensive guidance for visa application, residence permit extension, and immigration regulation compliance.</li>
+                        </ul>
+                    </div>
+                    <div class="program-card">
+                        <h4><i class="fas fa-users" style="color: #1d4ed8;"></i> Integration & Cultural Events</h4>
+                        <ul>
+                            <li><strong>President University Buddy Program:</strong> Pairing international students with local students for language and cultural exchange.</li>
+                            <li><strong>Cultural Festival & International Dinners:</strong> Annual events showcasing cultures and international cuisine.</li>
+                            <li><strong>Student Services:</strong> Academic counseling, social support, language assistance, and cultural adaptation services.</li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
-              <div class="featured-content"
-                style="padding: 40px;">
-                <span class="news-category primary"
-                  style="align-self: flex-start; padding: 8px 16px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,51,102,0.2);">Berita
-                  Utama</span>
-                <h2 class="news-title"
-                  style="font-size: 24px; line-height: 1.4; color: #1a1a1a; margin-top: 20px; transition: 0.3s;">President University Advances in UI GreenMetric 2025, Strengthening National and Global Standing</h2>
-                <div class="news-meta" style="margin-bottom: 20px; font-size: 14px; color: #777;">
-                  <span style="margin-right: 20px;"><i class="fas fa-calendar-alt" style="color: #003366;"></i> 6 Desember 2025</span>
-                  <span><i class="fas fa-tag" style="color: #003366;"></i> Internasionalisasi</span>
-                </div>
-                <p class="news-excerpt" style="color: #555; line-height: 1.7; font-size: 16px;">President University has achieved another important milestone in the UI GreenMetric World University Rankings 2025, securing 736th place globally and 76th nationally...</p>
-                <div style="margin-top: 25px;">
-                  <a href="berita-greenmetric-2025.html" class="read-more"
-                    style="display: inline-flex; align-items: center; padding: 12px 25px; background: #003366; color: white; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,51,102,0.3);"
-                    onmouseover="this.style.background='#ffcc00'; this.style.color='#003366'; this.style.boxShadow='0 8px 20px rgba(255,204,0,0.4)';"
-                    onmouseout="this.style.background='#003366'; this.style.color='white'; this.style.boxShadow='0 5px 15px rgba(0,51,102,0.3)';">Baca
-                    Selengkapnya <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
-                </div>
-              </div>
             </div>
 
-            <!-- FEATURED NEWS -->
-            <div class="featured-news" onclick="window.location.href='berita-qs-asia-2026.html'"
-              style="display: none;"
-              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.12)';"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-              <div class="featured-image"
-                style="background: url('President_University_Logo.png') center/cover; position: relative; border-radius: 15px 0 0 15px; background-size: contain; background-repeat: no-repeat; background-color: #003366;">
-                <div
-                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);">
+            <!-- SECTION 3: INTERNATIONAL RANKINGS TABLE -->
+            <div class="section-card">
+                <h2 class="sub-title"><i class="fas fa-trophy"></i> International Ranking Summary</h2>
+                <p style="margin-top: 0; color: #475569; font-size: 14px;">
+                    President University's achievements and rankings in various global independent ranking agencies.
+                </p>
+
+                <div class="table-responsive">
+                    <table class="ranking-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 38%;">Ranking Agency</th>
+                                <th>Achievements & Rankings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://www.topuniversities.com/qs-stars" target="_blank"><i class="fas fa-external-link-alt"></i> QS Stars Ratings</a></strong>
+                                </td>
+                                <td>
+                                    <span class="badge-5star"><i class="fas fa-star"></i> 5 Stars Overall Rating</span>
+                                    <p style="margin: 8px 0 0 0; font-size: 12px; color: #64748b;">
+                                        Highest rating for teaching quality, facilities, graduate success, and internationalization.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://www.wuri.world/" target="_blank"><i class="fas fa-external-link-alt"></i> WURI (World University Ranking for Innovations)</a></strong>
+                                </td>
+                                <td>
+                                    <strong>2026 Rank:</strong><br />
+                                    <span class="rank-highlight">🏆 #165 out of 500</span> — Global Top 500 Innovative Universities
+                                    <ul class="sub-rank">
+                                        <li>#3 out of 100 — AI-Based Teaching and Learning Transformation</li>
+                                        <li>#5 out of 96 — Culture/Values Category</li>
+                                        <li>#5 out of 99 — Infrastructure/Technologies</li>
+                                        <li>#5 out of 99 — Inclusive Social Innovation</li>
+                                    </ul>
+                                    <div style="margin-top: 10px;">
+                                        <strong>2025 Rank:</strong><br />
+                                        <span class="rank-highlight">🏆 #220 out of 405</span> — Global Top Innovative Universities
+                                        <ul class="sub-rank">
+                                            <li><span class="badge-tag">#1 in the World</span> Entrepreneurial Spirit</li>
+                                            <li>#2 out of 74 — Crisis Management</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://www.topuniversities.com/universities/president-university" target="_blank"><i class="fas fa-external-link-alt"></i> QS Asia University Rankings</a></strong>
+                                </td>
+                                <td>
+                                    <span class="rank-highlight">1201–1300 in Asia</span> | Asia's #185 Rank | <strong>National Rank #53</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://appliedhe.com/rankings/private-university-ranking-asean-2026/" target="_blank"><i class="fas fa-external-link-alt"></i> AppliedHE Private University Rankings</a></strong>
+                                </td>
+                                <td>
+                                    <strong>2026 Rank:</strong><br />
+                                    <span class="rank-highlight">🏆 #66</span> Southeast Asia | <span class="rank-highlight">🏆 #153</span> Asia | <span class="rank-highlight">🏆 #14</span> National<br /><br />
+                                    <strong>2025 Rank:</strong><br />
+                                    <span class="rank-highlight">🏆 #29</span> Southeast Asia | <span class="rank-highlight">🏆 #10</span> National
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://edurank.org/uni/president-university/rankings/" target="_blank"><i class="fas fa-external-link-alt"></i> EduRank</a></strong>
+                                </td>
+                                <td>
+                                    <strong>2026:</strong> #59 out of 562 in Indonesia | #1,032 out of 5,830 in Asia<br />
+                                    <strong>2025:</strong> #50 out of 592 in Indonesia | #923 out of 5,830 in Asia
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong><a href="https://www.timeshighereducation.com/world-university-rankings/president-university" target="_blank"><i class="fas fa-external-link-alt"></i> Times Higher Education (THE) Impact</a></strong>
+                                </td>
+                                <td>
+                                    • Global Rank 1500+<br />
+                                    • #401–600 in Peace, Justice, & Strong Institutions (SDG 16)<br />
+                                    • #601–800 in Decent Work & Economic Growth (SDG 8)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-              </div>
-              <div class="featured-content"
-                style="padding: 40px;">
-                <span class="news-category primary"
-                  style="align-self: flex-start; padding: 8px 16px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,51,102,0.2);">Berita
-                  Utama</span>
-                <h2 class="news-title"
-                  style="font-size: 24px; line-height: 1.4; color: #1a1a1a; margin-top: 20px; transition: 0.3s;">President University Debuts in QS Asia University Rankings 2026, Strengthening Regional Recognition</h2>
-                <div class="news-meta" style="margin-bottom: 20px; font-size: 14px; color: #777;">
-                  <span style="margin-right: 20px;"><i class="fas fa-calendar-alt" style="color: #003366;"></i> 24 November 2025</span>
-                  <span><i class="fas fa-tag" style="color: #003366;"></i> Internasionalisasi</span>
-                </div>
-                <p class="news-excerpt" style="color: #555; line-height: 1.7; font-size: 16px;">President University proudly marks a significant milestone with its first inclusion in the QS Asia University Rankings 2026, securing a position in the 1201–1300 band among 1,526 universities across Asia and ranking 53rd nationally in Indonesia...</p>
-                <div style="margin-top: 25px;">
-                  <a href="berita-qs-asia-2026.html" class="read-more"
-                    style="display: inline-flex; align-items: center; padding: 12px 25px; background: #003366; color: white; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,51,102,0.3);"
-                    onmouseover="this.style.background='#ffcc00'; this.style.color='#003366'; this.style.boxShadow='0 8px 20px rgba(255,204,0,0.4)';"
-                    onmouseout="this.style.background='#003366'; this.style.color='white'; this.style.boxShadow='0 5px 15px rgba(0,51,102,0.3)';">Baca
-                    Selengkapnya <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
-                </div>
-              </div>
             </div>
 
-            <!-- FEATURED NEWS -->
-            <div class="featured-news" onclick="window.location.href='berita-wuri-2025.html'"
-              style="display: none;"
-              onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.12)';"
-              onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
-              <div class="featured-image"
-                style="background: url('gambar-wuri-1.png') center/cover; position: relative; border-radius: 15px 0 0 15px; background-size: cover; background-repeat: no-repeat; background-color: #003366;">
-                <div
-                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.2), transparent);">
+            <!-- SECTION 4: UI GREENMETRIC TREND -->
+            <div class="section-card">
+                <h2 class="sub-title"><i class="fas fa-chart-line"></i> Sustainability & Green Campus Trend</h2>
+                <div class="chart-container">
+                    <h4><i class="fas fa-leaf" style="color:#059669;"></i> UI GreenMetric World University Rankings</h4>
+                    <p style="font-size:13px; color:#64748b; margin-bottom: 15px;">
+                        President University has actively participated in sustainable green campus rankings since 2018. In 2025, President University ranked <strong>736 worldwide</strong> (up from 836 in 2024).
+                    </p>
+                    <canvas id="greenmetricChart" style="max-height: 320px;"></canvas>
                 </div>
-              </div>
-              <div class="featured-content"
-                style="padding: 40px;">
-                <span class="news-category primary"
-                  style="align-self: flex-start; padding: 8px 16px; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,51,102,0.2);">Berita
-                  Utama</span>
-                <h2 class="news-title"
-                  style="font-size: 24px; line-height: 1.4; color: #1a1a1a; margin-top: 20px; transition: 0.3s;">President University Ranked 1st in the World for Entrepreneurial Spirit in WURI 2025</h2>
-                <div class="news-meta" style="margin-bottom: 20px; font-size: 14px; color: #777;">
-                  <span style="margin-right: 20px;"><i class="fas fa-calendar-alt" style="color: #003366;"></i> 12 Juli 2025</span>
-                  <span><i class="fas fa-tag" style="color: #003366;"></i> Internasionalisasi</span>
-                </div>
-                <p class="news-excerpt" style="color: #555; line-height: 1.7; font-size: 16px;">President University has achieved another major international milestone in the World University Rankings for Innovation (WURI) 2025, earning 1st place globally in Entrepreneurial Spirit...</p>
-                <div style="margin-top: 25px;">
-                  <a href="berita-wuri-2025.html" class="read-more"
-                    style="display: inline-flex; align-items: center; padding: 12px 25px; background: #003366; color: white; border-radius: 30px; text-decoration: none; font-weight: 600; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,51,102,0.3);"
-                    onmouseover="this.style.background='#ffcc00'; this.style.color='#003366'; this.style.boxShadow='0 8px 20px rgba(255,204,0,0.4)';"
-                    onmouseout="this.style.background='#003366'; this.style.color='white'; this.style.boxShadow='0 5px 15px rgba(0,51,102,0.3)';">Baca
-                    Selengkapnya <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
-                </div>
-              </div>
             </div>
-
         </main>
 
+        <!-- SIDEBAR -->
         <aside>
-            <div class="info-box">
-                <h4 style="margin-top: 0;"><i class="fas fa-info-circle"></i> Catatan Data</h4>
-                <p style="font-size: 13px;">Data disadur dari website-website pemeringkatan internasional terkait.
-                    Seluruh peringkat bersifat dinamis mengikuti periode penilaian masing-masing lembaga.
+            <div class="widget-box">
+                <h4><i class="fas fa-info-circle"></i> Ranking Notes</h4>
+                <p>
+                    Data sourced directly from the official portals of each international ranking agency. Rankings are dynamic according to annual assessment cycles.
                 </p>
+            </div>
+
+            <div class="widget-box">
+                <h4><i class="fas fa-globe"></i> International Office</h4>
+                <p>
+                    President University's International Office provides visa services, *Buddy System* programs, cultural exchanges (*Cultural Festival*), and international mobility scholarships.
+                </p>
+                <a href="mailto:international@president.ac.id" style="font-size: 13px; color: #1d4ed8; font-weight: 600;">
+                    <i class="fas fa-envelope"></i> Contact International Office
+                </a>
+            </div>
+
+            <div class="widget-box">
+                <h4><i class="fas fa-link"></i> Quick Links SPMI</h4>
+                <ul class="quick-links-list">
+                    <li><a href="akreditasi.html">Accreditation Certificates <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="ppepp.html">PPEPP Cycle of SPMI <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="ami.html">Internal Quality Audit <i class="fas fa-chevron-right"></i></a></li>
+                    <li><a href="berita.html">Latest News & Activities <i class="fas fa-chevron-right"></i></a></li>
+                </ul>
             </div>
         </aside>
     </div>
 
-      <style>
-    /* Contact Us Footer Styles */
-    .footer-contact {
-      margin-bottom: 20px;
-    }
-    .footer-contact h3 {
-      margin: 0 0 10px 0;
-      color: #fff;
-      font-size: 18px;
-    }
-    .footer-contact p {
-      margin: 0;
-      font-size: 16px;
-    }
-    .contact-email {
-      color: #ccc;
-      text-decoration: none;
-      transition: color 0.3s ease, text-decoration 0.3s ease;
-    }
-    .contact-email:hover {
-      color: #ffcc00;
-      text-decoration: underline;
-    }
-    .footer-divider {
-      border: 0;
-      border-top: 1px solid #555;
-      margin: 20px auto;
-      width: 80%;
-      max-width: 600px;
-    }
-    .footer-copyright {
-      margin: 0;
-      font-size: 14px;
-    }
-  </style>
-  <footer>
-    <div class="footer-contact">
-      <h3>Contact Us</h3>
-      <p>
-        <i class="fas fa-envelope"></i>
-        <a href="mailto:spmi@president.ac.id" class="contact-email">spmi@president.ac.id</a>
-      </p>
-    </div>
-    <hr class="footer-divider">
-    <p class="footer-copyright">&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
-  </footer>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contact">
+            <h3>Quality Assurance Office (SPMI)</h3>
+            <p>
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:spmi@president.ac.id" class="contact-email">spmi@president.ac.id</a>
+            </p>
+        </div>
+        <hr class="footer-divider" />
+        <p class="footer-copyright">&copy; 2026 SPMI University. All rights reserved by law.</p>
+    </footer>
 
+    <!-- CHART JS SCRIPT -->
     <script>
-        // ---- Helper: membuat chart tren ----
         function makeTrendChart(id, label, labels, data, color, reverseY, yLabel) {
             const ctx = document.getElementById(id);
             if (!ctx) return;
-            new Chart(ctx.getContext('2d'), {
-                type: 'line',
+            new Chart(ctx.getContext("2d"), {
+                type: "line",
                 data: {
                     labels: labels,
-                    datasets: [{
-                        label: label,
-                        data: data,
-                        borderColor: color,
-                        backgroundColor: color.replace('rgb', 'rgba').replace(')', ', 0.1)'),
-                        borderWidth: 3,
-                        tension: 0.35,
-                        fill: true,
-                        pointRadius: 5,
-                        pointHoverRadius: 8
-                    }]
+                    datasets: [
+                        {
+                            label: label,
+                            data: data,
+                            borderColor: color,
+                            backgroundColor: "rgba(5, 150, 105, 0.08)",
+                            borderWidth: 3,
+                            tension: 0.3,
+                            fill: true,
+                            pointRadius: 5,
+                            pointBackgroundColor: color,
+                            pointHoverRadius: 8,
+                        },
+                    ],
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: true,
                     scales: {
                         y: {
                             reverse: reverseY,
-                            title: { display: true, text: yLabel }
-                        }
+                            title: { display: true, text: yLabel },
+                        },
                     },
                     plugins: {
-                        legend: { position: 'bottom' }
-                    }
-                }
+                        legend: { position: "bottom" },
+                    },
+                },
             });
         }
 
-        // ---- UI Greenmetric ----
+        // Initialize UI GreenMetric Chart
         makeTrendChart(
-            'greenmetricChart',
-            'Peringkat UI Greenmetric (Global)',
-            ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+            "greenmetricChart",
+            "UI Greenmetric Ranking (Global)",
+            ["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"],
             [665, 718, 832, 664, 604, 538, 836, 736],
-            'rgb(0, 77, 64)', true, 'Peringkat Dunia'
+            "#059669",
+            true,
+            "World Ranking"
         );
-
-
     </script>
 </body>
-
 </html>
