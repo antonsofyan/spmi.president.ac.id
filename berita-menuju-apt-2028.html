@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>President University Perkuat Komitmen Mutu Bersama BAN-PT</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="header-standard.css">
+  <script src="header-standard.js" defer></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: 0.3s;
+    }
+
+    header {
+      background-color: #203E77;
+      color: white;
+      padding: 0;
+      border-bottom: 5px solid #ffcc00;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 80px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    nav ul li {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a {
+      color: white;
+      font-weight: 500;
+      padding: 0 18px;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav>ul>li>a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav ul ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #004080;
+      min-width: 220px;
+      flex-direction: column;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    nav ul ul li,
+    nav ul ul li a {
+      width: 100%;
+    }
+
+    nav ul ul li a {
+      color: white;
+      display: block;
+      padding: 12px 20px;
+    }
+
+    nav ul li:hover>ul {
+      display: flex;
+    }
+
+    .arrow-down {
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    main {
+      background: white;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+      font-size: 28px;
+      color: #003366;
+      margin: 0 0 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: #003366;
+    }
+
+    .article-header {
+      margin-bottom: 25px;
+    }
+
+    .news-category {
+      display: inline-block;
+      background: #003366;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .article-title {
+      font-size: 32px;
+      color: #fff;
+      background: #203E77;
+      border-left: 5px solid #ffcc00;
+      border-radius: 4px;
+      padding: 18px 22px;
+      margin: 12px 0 15px;
+      line-height: 1.3;
+    }
+
+    .news-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    figure {
+      margin: 32px auto;
+      text-align: center;
+      max-width: 960px;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .article-content {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+    }
+
+    .article-content p {
+      margin-bottom: 20px;
+    }
+
+    .article-content a {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #333;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .footer-contact {
+      margin-bottom: 20px;
+    }
+
+    .footer-contact h3 {
+      margin: 0 0 10px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .footer-contact p,
+    .footer-copyright {
+      margin: 0;
+    }
+
+    .contact-email {
+      color: #ccc;
+    }
+
+    .footer-divider {
+      border: 0;
+      border-top: 1px solid #555;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .footer-copyright {
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav ul li {
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      nav>ul>li>a {
+        min-height: 44px;
+      }
+
+      nav ul ul {
+        position: static;
+        width: 100%;
+      }
+
+      main {
+        padding: 24px 18px;
+      }
+
+      .article-title {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-container">
+      <div class="logo" style="display: flex; align-items: center;">
+        <img src="President_University_Logo.png" alt="Logo President University"
+          style="height: 60px; margin-right: 15px;">
+        <div>
+          <h1 style="margin: 0; font-size: 24px; color: white;">Quality Assurance</h1>
+          <small style="font-size: 14px; opacity: 0.8; color: white;">President University</small>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="#">About Us <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="visi-misi.html">Core Values</a></li>
+              <li><a href="struktur-organisasi.html">Our Team &amp; Structure</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Accreditation <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="akreditasi.html">Accreditation</a></li>
+              <li><a href="alumni.html">Accreditation History</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">SPMI <i class="fas fa-chevron-down arrow-down"></i></a>
+            <ul>
+              <li><a href="ppepp.html">PPEPP Cycle</a></li>
+              <li><a href="ami.html">Internal Quality Audit</a></li>
+            </ul>
+          </li>
+          <li><a href="berita.html">News</a></li>
+          <li><a href="internasionalisasi.html">Internationalization</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <h1 class="page-title"><i class="fas fa-newspaper"></i> Berita &amp; Kegiatan SPMI</h1>
+      <a href="berita.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Berita</a>
+
+      <article class="news-article">
+        <header class="article-header">
+          <span class="news-category">Penjaminan Mutu</span>
+          <h1 class="article-title">President University Perkuat Komitmen Mutu Bersama BAN-PT untuk Mempertahankan Akreditasi Unggul Perguruan Tinggi</h1>
+          <div class="news-meta">
+            <span><i class="fas fa-calendar-alt"></i> 30 September 2026</span>
+            <span><i class="fas fa-user"></i> Admin SPMI</span>
+            <span><i class="fas fa-tag"></i> Akreditasi dan Penjaminan Mutu</span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <figure>
+            <img src="Prof Ari 1.jpg" alt="Prof. Dr. Ir. Ari Purbayanto menyampaikan materi seminar di President University">
+            <figcaption>Prof. Dr. Ir. Ari Purbayanto, Direktur Dewan Eksekutif BAN-PT, menjadi narasumber seminar menuju APT 2028.</figcaption>
+          </figure>
+
+          <p>President University, 30 September 2026 President University melalui Direktorat Penjaminan Mutu Internal (DPMI) menyelenggarakan seminar bertajuk “Menuju APT 2028: Strategi Membangun Kesiapan Institusi Berdasarkan Regulasi Terbaru” pada Rabu, 30 September 2026. Kegiatan yang berlangsung di Charles Himawan Auditorium, President University, ini menjadi bagian dari komitmen President University untuk mempertahankan status Akreditasi Unggul Perguruan Tinggi sekaligus terus meningkatkan mutu institusi secara berkelanjutan melalui penguatan sistem penjaminan mutu dan kesiapan menghadapi perkembangan regulasi akreditasi perguruan tinggi.</p>
+
+          <p>Seminar tersebut menghadirkan Prof. Dr. Ir. Ari Purbayanto, M.Sc., Direktur Dewan Eksekutif Badan Akreditasi Nasional Perguruan Tinggi (BAN-PT) sebagai narasumber. Kehadiran narasumber dari BAN-PT memberikan kesempatan bagi President University untuk memperoleh pemahaman langsung mengenai arah perkembangan kebijakan dan regulasi akreditasi perguruan tinggi.</p>
+
+          <figure>
+            <img src="Prof Ari 2.jpg" alt="Prof. Ari Purbayanto dan perwakilan President University menyerahkan cendera mata">
+            <figcaption>Penyerahan cendera mata kepada Prof. Dr. Ir. Ari Purbayanto, M.Sc.</figcaption>
+          </figure>
+
+          <p>Dalam kegiatan tersebut, pembahasan diarahkan pada pentingnya membangun kesiapan institusi secara lebih sistematis dan berkelanjutan. Persiapan akreditasi tidak hanya berkaitan dengan pemenuhan dokumen pada saat asesmen, tetapi juga perlu didukung oleh implementasi sistem penjaminan mutu yang berjalan secara konsisten, pengelolaan data yang baik, serta bukti kinerja yang dapat menunjukkan perkembangan dan kualitas institusi.</p>
+
+          <p>Hal tersebut sejalan dengan peran DPMI President University dalam mengawal peningkatan mutu secara berkelanjutan melalui pengembangan standar Sistem Penjaminan Mutu Internal (SPMI), pelaksanaan Audit Mutu Internal (AMI), pendampingan akreditasi, serta penerapan siklus PPEPP (Penetapan, Pelaksanaan, Evaluasi, Pengendalian, dan Peningkatan).</p>
+
+          <p>Seminar ini juga menjadi momentum bagi President University untuk menyelaraskan strategi internal dengan perkembangan kebijakan akreditasi nasional. Sebagai institusi yang saat ini memiliki status Akreditasi Perguruan Tinggi Unggul untuk periode 2025–2028, penguatan sistem mutu menjadi bagian penting dalam menjaga keberlanjutan kualitas institusi sekaligus mempersiapkan langkah strategis menghadapi proses akreditasi berikutnya.</p>
+
+          <figure>
+            <img src="Prof Ari 3.jpg" alt="Prof. Ari Purbayanto berfoto bersama pimpinan dan peserta seminar President University">
+            <figcaption>Foto bersama narasumber, pimpinan, dan peserta seminar Menuju APT 2028.</figcaption>
+          </figure>
+
+          <p>Melalui kegiatan ini, President University terus mendorong terbentuknya budaya mutu yang tidak hanya berorientasi pada pemenuhan persyaratan akreditasi, tetapi juga pada peningkatan kualitas institusi secara berkelanjutan. Dalam menghadapi akreditasi perguruan tinggi Universitas Presiden yang akan habis masa berlakunya di tahun 2028, kesiapan institusi diharapkan dapat dibangun sejak dini melalui kolaborasi lintas unit, penguatan tata kelola, pemanfaatan data dan bukti kinerja, serta komitmen bersama terhadap peningkatan mutu.</p>
+        </div>
+      </article>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-contact">
+      <h3>Contact Us</h3>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:spmi@president.ac.id" class="contact-email">spmi@president.ac.id</a></p>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-copyright">&copy; 2026 SPMI Universitas. Hak Cipta Dilindungi Undang-Undang.</p>
+  </footer>
+</body>
+
+</html>
