@@ -183,6 +183,15 @@
       background: linear-gradient(135deg, #007bff, #17a2b8);
     }
 
+    .summary-card.pertama {
+      background: linear-gradient(135deg, #ffc107, #d39e00);
+      color: #333;
+    }
+
+    .summary-card.sementara {
+      background: linear-gradient(135deg, #fd7e14, #e8590c);
+    }
+
     .fakultas-section {
       margin-bottom: 30px;
       border: 1px solid #ddd;
@@ -266,6 +275,16 @@
     .peringkat.b {
       background: #fff3cd;
       color: #856404;
+    }
+
+    .peringkat.pertama {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .peringkat.sementara {
+      background: #ffe5d0;
+      color: #8a3600;
     }
 
     /* INTERNATIONAL ACCREDITATION STYLES */
@@ -469,9 +488,13 @@
           <h3>1</h3>
           <p>Prodi Peringkat B</p>
         </div>
-        <div class="summary-card" style="background: linear-gradient(135deg, #ffc107, #d39e00); color: #333;">
+        <div class="summary-card pertama">
           <h3>1</h3>
-          <p>Terakreditasi Sementara</p>
+          <p>Prodi Terakreditasi Pertama</p>
+        </div>
+        <div class="summary-card sementara">
+          <h3>1</h3>
+          <p>Prodi Terakreditasi Sementara</p>
         </div>
         <div class="summary-card">
           <h3>28</h3>
@@ -667,7 +690,7 @@
             </tr>
             <tr>
               <td>PJJ Sistem Informasi</td>
-              <td><span class="peringkat baik">Terakreditasi pertama</td>
+              <td><span class="peringkat pertama">Terakreditasi Pertama</span></td>
               <td>115/SK/LAM-INFOKOM/Ak.Min/S/X/2026</td>
               <td>14/10/2028</td>
               <td>LAMINFOKOM</td>
@@ -848,7 +871,7 @@
             </tr>
             <tr>
               <td>Magister Hukum</td>
-              <td><span class="peringkat baik">Terakreditasi Sementara</span></td>
+              <td><span class="peringkat sementara">Terakreditasi Sementara</span></td>
               <td>4617/SK/BAN-PT/Ak.P/M/VI/2024</td>
               <td>11/6/2029</td>
               <td>BAN-PT</td>
